@@ -1,0 +1,451 @@
+\documentclass[preprint2]{aastex61}
+
+\bibliographystyle{aasjournal}
+\usepackage{graphicx}
+\usepackage[suffix=]{epstopdf}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{xspace}
+
+%    Make Scientific Notation
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+% make the word Kepler italicized
+\newcommand{\Kepler}{\textsl{Kepler}\xspace}
+
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%
+\title{The Evolution of Flare Activity with Stellar Age from \Kepler}
+
+\shorttitle{Flares versus Age}
+\shortauthors{Davenport et al.}
+
+
+\correspondingauthor{James. R. A. Davenport}
+\email{James.Davenport@wwu.edu}
+
+\author{James. R. A. Davenport}
+\altaffiliation{NSF Astronomy and Astrophysics Postdoctoral Fellow}
+\altaffiliation{DIRAC Fellow}
+\affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
+\affiliation{Department of Astronomy, University of Washington, Seattle, WA 98195, USA}
+
+
+\author{Kevin R. Covey}
+\affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
+
+\author{Riley W. Clarke}
+\affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
+
+\author{Austin C. Boeck}
+\affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
+
+\author{Jonathan Cornet}
+\affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
+
+\author{Suzanne L. Hawley}
+\affiliation{Department of Astronomy, University of Washington, Seattle, WA 98195, USA}
+
+
+
+
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+351 stars
+results from our automated survey of stellar flares using the entire Kepler dataset. Matching our flare stars to Kepler rotation periods, we find a decline in the energy emitted in flares as stars spin down. For a subset of Kepler M dwarfs with low resolution followup spectra, we also find a correlation between Halpha luminosity and the energy emitted in flares. These two results give the first definitive evidence of flare rates declining over stellar time, indicating flares are intimately connected to age--rotation--activity evolution of the global stellar dynamo. 
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Surface magnetic activity is observed to decline over time for low-mass stars on the main sequence. Magnetic activity comes in a wide range of observable phenomena, including UV and X-ray luminosity, cool starspots, and flares. 
+As the star loses angular momentum via stellar winds, the rotation velocity decreases and the internal magnetic dynamo is quieted. This age--activity connection was outlined in the seminal work by \citet{skumanich1972}, which was directly connected with flare activity as well \citep{skumanich1986}. Magnetic activity evolution has been confirmed and updated for low-mass stars (late F through early M type) in many studies using X-ray luminosity \citep{wright2011}, UV emission \citep{shkolnik2014}, Zeeman-Doppler imaging \citep{vidotto2014}, and H$\alpha$ emission \cite{west2015}, to name but a few. 
+
+
+This surface activity can have significant impact on the evolution of habitable zone planets orbiting active stars. Flares in particular have been studied as a possible threat to a planet's ability to retain a habitable atmosphere \citep[e.g.][]{segura2010,luger2015,tilley2017}. For example, UV flux and high energy particles impacting a terrestrial planet's atmosphere from frequent stellar flares can significantly deplete ozone, and result in a potentially uninhabitable planetary surface \citep{tilley2017}. Under more extreme scenarios, stellar activity could strip large portions of a planet's atmosphere away over timescales of a few 100 Myr \citep{luger2015}. The duration of high flare activity early in a star's life may therefore be a fundamental property in defining potential planetary habitability. 
+
+
+Stellar activity also makes planet searches more difficult, adding both slow variability (e.g. starspots) that can impact radial velocity studies, and fast stochastic variability (e.g. flares) that can impede transit searches \citep[e.g.][]{kipping2017}. Further, though stellar activity is less prominent at redder wavelengths, even observing in the infrared does not eliminate the potential for flares from active stars to impact transit searches, particularly for the lowest mass stars \citep{davenport2017a}. To understand planet occurrence rates for nearby low-mass stars, as well as the evolution of planetary habitability, we must constrain flare rates and properties as a function of stellar age.
+
+
+Measuring the evolution of flare activity with stellar age has typically been limited to comparisons between flare stars in young clusters or stellar associations with known ages. Studying flare stars in young nearby moving groups and clusters reaches back at least five decades \citep{haro1966}, with the conclusion that all low-mass dwarf stars undergo an evolution in flare activity \citep{ambartsumian1975}. Pre-main sequence stars have also been known to exhibit high levels of flare activity compared to field-aged dwarfs \citep[e.g.][]{feigelson2001}. However, in most previous studies field stars are assumed to be approximately Solar-aged, and therefore generally flare-inactive, since few reliable age indicators for isolated field stars exist.
+
+
+Space-based exoplanet transit missions such as \Kepler \citep{borucki2010} have provided a revolutionary dataset for statistical studies of flare stars, particularly for field dwarfs \citep{walkowicz2011}. Such missions are ideally suited for large scale studies of flares, as they produce high precision, continuous light curves for months to years in duration.
+The \Kepler survey has been used to explore ``super-flare'' activity (events with energies more than 10 times larger than those observed on the Sun) from solar-mass stars \citep{shibayama2013}, as well as from K and M dwarfs \citep{candelaresi2014}. White-light flares in \Kepler light curves have been detected across the main sequence, from massive A and F stars \citep{balona2012} down to L dwarfs \citep{gizis2013}, and produced the most detailed catalogs of flares for individual active stars to date \citep{hawley2014,davenport2014b}. 
+
+
+In this paper we present an ensemble analysis of flare activity in the \Kepler field, based on the flare sample amassed in \citet{davenport2016}. This sample was generated using an automated processing of the entire \Kepler light curve database, and produced a sample of over 4000 candidate flare stars. The \citet{davenport2016} catalog of flares provides the most complete census of flare activity from a large sample of field stars to date, and is the ideal dataset to study the evolution of flare rates with stellar age.
+
+
+
+Here we explore the relationship between flare occurrence rates and stellar ages (derived from rotation periods) for stars in the \Kepler field. Our sample of flare stars with measured rotation periods is detailed in \S\ref{sec:sample}.
+We present three approaches for quantitatively tracing changes in flare activity over time, including modeling the flare frequency distribution as a function of both stellar mass and age in \S\ref{sec:activity}. In \S\ref{sec:model} we explore the empirical evolution of flare activity for our \Kepler sample, and provide an analytic prescription for use in other studies. Finally, a short discussion and comparison to other studies is given in \S\ref{sec:discussion}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{sample selection}
+\label{sec:sample}
+
+get data from D16, matched to rotation sample of McQuillan. since we care about extending flare rates to entire populations of stars, we have to consider null detections. all Kepler LC's were searched by D16, incl. flare injection tests. so even for stars w/o flares, we have upper limits on flare rates we could have measured.
+all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
+
+
+three examples of flare stars used in this analysis are shown in Figure \ref{fig:ffd1}. these example stars will be followed through the analysis of the paper, but have not been cherry-picked, just selected to demonstrate a range of flare rates
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=2.25in]{figures/6117832_ffd}
+\includegraphics[width=2.25in]{figures/7420545_ffd}
+\includegraphics[width=2.25in]{figures/10071383_ffd}
+\caption{
+Three examples of flare frequency distributions from paper 1. All three examples demonstrate breaks from a single power law frequency distribution at high flare energies.
+}
+\label{fig:ffd1}
+\end{figure*}
+
+
+
+we note some contamination exists in the original 4k stars from D16, some binaries and RR Lyr which {\tt appaloosa} incorrectly flagged as flare candidates. While these edge cases do not dominate the sample, we urge caution in not blindly assuming every candidate object from D16 is a bona fide flare star. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quantifying Flare Activity}
+\label{sec:activity}
+
+
+This requires a comparison of flare activity between stars of different masses and ages, as well as at different distances.
+Our discussion in many ways mirrors the review on flare activity by \citet{kunkel1975}, which explored different methods for quantifying and comparing flare activity from heterogeneous photometric studies. 
+
+
+
+
+how do you really measure the ``activity'' level of a star via flares? Other magnetic activity indicators like H$\alpha$ or X-ray flux measure the filling factor (or density) of the chromosphere or corona, which is driven by B fields. (check NLDS, get wording SLH-approved). while flares occur stochastically, their overall rate and maximum intensity is related to the global B field since the energy of specific events traces the small-scale B fields of active regions.
+
+In this section we outline three methods for quantifying the flare activity level of a star. These include the fractional flare energy ($L_{fl}/L_{Kp}$) used in D16 and introduced by \citet{lurie2015}, the flare rate evaluated at a specific energy, and an analytic model of the entire flare frequency distribution as a function of both stellar mass and age. While all three of these metrics has utility, we believe the latter will be of most value to investigations of habitability.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fractional Flare Luminosity}
+\label{sec:fracL}
+
+discuss $L_{fl}/L_{Kp}$, originally developed by \citet{lurie2015} in their analysis of \Kepler data for the M5+M5 active binary, GJ 1245AB.
+
+this quantity is inspired by the  $L_{H\alpha}/L_{bol}$ for M dwarfs in giving the fractional luminosity of the emission in the chromosphere. The Halpha is done by measuring the equivalent width of Halpha, and then transforming to absolute units using the ``$\chi$'' factor that is spectral type dependent \citep{walkowicz2004}, or equivalently photometric color dependent \citep{douglas2016}.  By summing the equivalent duration for all observed flares we compute $L_{fl}/L_{Kp}$, analogous to integrating the Halpha line into equivalent width. Like the Halpha work, this also does not require accurate distance estimates for each star.
+
+As \citet{lurie2015} note, the \Kepler figure needs to be corrected  by a $\chi$-like figure to compare between stars if differing spectral type. This value would compute the bolometric flux correction through the \Kepler bandpass as a function of spectral type. 
+use bolometric magnitudes from Legget+1996? good discussion in \citet{douglas2016} about doing this carefully with model spectra as mean flux in 2 windows, which should be useful. If we assume a ``gray'' response (no intrinsic shape to the flare SED), then this correction factor is as simple as creating the ratio of $f_{obs} / f_{bol}$, directly equivalent to the $\chi$ factor.  In this case, the very wide bandpass of the \Kepler filter means the $\chi$ factor is relatively close to 1, and doesn't change much between spectral types. We demonstrate this in Figure \ref{fig:chi}, using the outputs for a 600 Myr PARSEC isochrone from \citet{bressan2012}.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/flare_chi}
+\caption{
+an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass.
+}
+\label{fig:chi}
+\end{figure}
+
+
+However, an added complication is that while H$\alpha$ emission occurs over a fairly small range of wavelength, flares emit energy over all observed wavelengths. The shape of this emission in optical wavelengths is typically characterized as a hot blackbody, usually with $T_{eff}\approx10,000$ K, but has been seen to have significant excess emission in both the blue and red \citep[e.g. see][]{kowalski2013}. However, this temperature changes throughout the event in a manner that is often not well characterized, particularly for complex, multi-peaked flare events \citep[e.g.][]{slhadleo,kowalski2012}. thus the contrast between flare and quiescent emission is dependent on both the stellar spectrum and the flare temperature profile. Kowalski citation for detailed work on building a real flare SED in the optical, which might be promising way forward. 
+
+
+
+the fractional flare energy was used in D16 to show that the flare activity level decreased with increasing Rossby number (decreasing rotation velocity), as shown in Figure \ref{fig:rossby1}.
+{\bf TO DO: Make another version of this figure but correct to Lfl/Lbol.}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/Rossby_lfllkp_color}
+\includegraphics[width=3.5in]{figures/color_rot_lfllkp}
+\caption{
+Rossby number vs flare energy for sample from Paper 1
+}
+\label{fig:rossby1}
+\end{figure}
+
+other complications for this quantity include varying distances, giving different energy ranges over which flares can be observed. For stars of similar distances this is negligible (GJ 1245AB being ideal). so given the energy range details, and flare temperature profile evolution uncertainties, this quantity is difficult to model with any precision. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Specific Flare Rate}
+\label{sec:rate}
+
+instead of integrating all flares, one can utilize their cumulative flare frequency vs energy distribution (FFD), and evaluate it at a fixed energy. this is appealing because the FFD is the typical figure of merit for considering a flare rate, and has been used in some capacity for many years \citep[e.g.][]{lme1976}, was noted as an option in D16 for effectively comparing flare activity levels for stars at different distances. for each star we can compute this by creating the FFD over whatever range of flares was actually observed, regardless of SpT or distance. note this is a reverse cumulative distribution, meaning the specific rates derived are for flares of a certain energy {\it or larger}. this FFD can be fit with a powerlaw function, and then a flare rate is read off the powerlaw function at a fixed energy for all stars.
+
+In Figure \ref{fig:rossby2} we demonstrate the flare rate evaluated at an energy of $\log \varepsilon = 35$ erg, written as $R_{35}$, again versus the Rossby number. A clear gradient in the implied flare rate is seen as a function of mass, reproducing the previously known fact that while low-mass stars have a high flare rate and can emit a large fraction of their luminosity in flares, the actual flares are relatively lower energy. 
+
+This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/Rossby_rate_color}
+\includegraphics[width=3.5in]{figures/color_rot_R35}
+\caption{
+specific flare rate evaluated at log E = 35 as a function of the rossby number (top) and versus the stellar rotation and color (bottom), as in Figure \ref{fig:rossby1}.
+}
+\label{fig:rossby2}
+\end{figure}
+
+
+A similar approach is to pick a flare energy to evaluate the FFD fit that scales with the bolometric luminosity of the star. A flare event with an equivalent duration of $P=1$ sec by definition has an energy equal to the bolometric luminosity of the star integrated for 1 second
+In Figure X we show the flare rate evaluated at an energy of $P=1$ sec, written as $R_{1s}$, versus the Rossby number.
+{\bf TO DO: make version of this figure using R1s for the observed data, scaling with bolometric luminosity}
+
+
+
+%try splitting this sample in to mass bins (before/after mid K?) Does the trend go away at the latest SpT's?
+%
+%explore this space with a better fit, using MCMC to understand degeneracy between parameters (slope vs break)
+
+
+
+%candelaresi2014 explored this space a little
+
+
+%get Rossby-versus-age trend, eqn provided in \citet{vardavas2005}
+%how much of the young Sun's energy was emitted in flares? how much today - does that match with measurements? (not sure where to pull this info from)
+
+
+
+
+
+
+
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=3.5in]{figures/color_rot_lfllkp}
+%\includegraphics[width=3.5in]{figures/color_rot_R35}
+%\caption{
+%Change relative flare luminosity as a function of both stellar rotation period and color.
+%}
+%\label{fig:colorrot}
+%\end{figure}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[!ht]
+\centering
+\includegraphics[width=2.25in]{figures/mean_ffd0}
+\includegraphics[width=2.25in]{figures/mean_ffd1}
+\includegraphics[width=2.25in]{figures/mean_ffd2}\\
+\includegraphics[width=2.25in]{figures/mean_ffd3}
+\includegraphics[width=2.25in]{figures/mean_ffd4}
+\includegraphics[width=2.25in]{figures/mean_ffd5}
+\caption{
+Average FFD, combining all available quarters of \Kepler data, for stars in the 6 $g-i$ color bins defined in \citet{davenport2016}. Each track is colored as a function of the measured rotation period from \citet{mcquillan2014}. A clear and coherent decrease in the total flare rates is observed as stars slow down (age) within each panel.
+}
+\label{fig:meanffd}
+\end{figure*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modeling the Flare Frequency Distribution}
+\label{sec:ffd}
+
+Rather than reducing the entire observed sample of flares for a given star down to a single metric, we can instead characterize the flare frequency distribution. the model would produce the mean, or expected, flare frequency distribution for all stars  at any age, mass, flare energy.
+this good because FFD is, again, the figure of merit when discussing solar and stellar flare rates. this also good b/c allows us to compare flare energy distributions between stars of different masses, or distances (changes observable energy range).
+
+
+In Figure \ref{fig:meanffd} we show the FFD for our sample of NNN stars with measured rotation periods and good flare rates, separated into six bins based on their $g-i$ colors. Thus the stars within each bin have roughly similar masses, {\bf ranging from M=1.1 to M=0.3?}. Each FFD shown is actually the mean FFD for a single star, averaged over all available qtrs of \Kepler data.
+Each FFD is colored by the rotation period reported by \citet{mcquillan2014}, with increasing rotation periods from red to blue.
+a very clear trend in the flare frequency versus rotation periods is seen, with flare rates monotonically deceasing as stars lose angular momentum. Stars of higher mass have higher energy flares recovered, since the star is intrinsically brighter and a given fractional amplitude of flux corresponds to larger luminosity increase. the low-energy cutoff in each FFD is determined by the flare injection tests of D16. A bias is seen where rapid rotators have slightly higher energy cutoffs, due to increased starspot amplitudes that make flare recovery more difficult for the iterative algorithm of D16.
+Since colors of stars are in small bins, the energy zeropoints used to transform relative EDs into energies have very small differences. these FFDs show that the flare rate model idea empirically works.
+
+
+
+For each star, need to convert the observed units (color, period) in to theoretical units (mass, age)
+color into mass via isochrone in D16.  problems here, of course. new version of KIC stats (Stellar-17) provides another way to test this. our masses generally good. very few potential giants in our final sample of rotating stars {\bf CHECK Stellar-17 vs final sample}
+
+age via gyro prescriptions (ruth, etc). problems may exist at older, slower rotators \citep{van-saders2016}, but our sample of flare stars mostly biased towards more active, younger stars.
+
+
+
+%will Jen van Saders have new gyro stuff out i can use?
+%this is the big plot i want this paper to be all about. even if i make it a few times with diff age metrics
+
+
+
+
+{\bf null detections.... figure those out}
+
+
+
+
+we assume powerlaw decrease in FFD evolution. this not totally absurd, since other activity indicators have similar form, including the relative flare luminosity observed in D16.
+We have used the following model to fit the FFD evolution:
+
+\begin{eqnarray}
+\label{eqn:model}
+& \log \nu = a \log \varepsilon + b\\
+a =& a_1 \log t + a_2 m + a_3 \nonumber\\
+b =& b_1 \log t + b_2 m + b_3 \nonumber % \log t \, m + b_4
+\end{eqnarray}
+
+\noindent
+where $\varepsilon$ is the flare energy in erg, $t$ is the stellar age in Myr, $m$ is the stellar mass relative to Solar, and the resulting $\nu$ is the cumulative number of flares per day. we fit this first with a least-sq approach {\bf(implement BSFG-S)}, and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. The final parameters in our model are given in Table \ref{tbl:params}.
+
+
+\begin{deluxetable}{llll}
+\tablecolumns{4}
+\tablewidth{0pt}
+\tabletypesize{\footnotesize}
+\tablecaption{Best-fit parameters for the FFD evolution model described in Equation \ref{eqn:model}.
+\label{tbl:params}}
+%\tablehead{
+%	\colhead{($\log t$)}&
+%	\colhead{($m$)}&
+%	\colhead{($\log t \, m$)}&
+%	\colhead{}
+%	}
+\startdata
+$a_1=-0.073$  &  $a_2=0.60$ &    $a_3=0.062$ & $a_4=-0.965$\\
+$b_1=2.33$ & $b_2=-18.39$ &  $b_3=-2.337$  &  $b_4=30.69$\\
+\enddata
+\end{deluxetable}
+
+
+we tried other parameterization of the model, including a 4th term (cross term), but the BIC wasn't better enough to warrant the increase in the degrees of freedom. Figure \ref{fig:chisq} shows no strong trend in the quality of the model versus either color or period: a reasonable fit all over.
+
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=3.5in]{figures/color_rot_chisq}
+%\caption{
+%The reduced $\chi^2$ for all stars in our sample compared with our best-fit FFD evolution model. For stars redder than $g-i\approx1$ no significant trend in the model residual is observed, indicating our FFD evolution model is accurately tracing the change in flare rate versus rotation period. For stars bluer stars, however, a modest trend is present, which may indicate a higher order fit is required to trace the evolution for Solar mass stars.
+%}
+%\label{fig:chisq}
+%\end{figure}
+
+
+
+now that we've fit all the FFDs together, we can go back and predict the FFDs in our sample to demonstrate the model is working for specific targets. For example, same targets as before are shown in Figure \ref{fig:ffdmodel}, with model fits.
+
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=2.25in]{figures/6117832_ffd_fit}
+\includegraphics[width=2.25in]{figures/7420545_ffd_fit}
+\includegraphics[width=2.25in]{figures/10071383_ffd_fit}
+\caption{
+Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), but with the resulting flare activity model for each star shown (red line). Note this model is not fit for each star, but instead is developed from our entire sample.}
+\label{fig:ffdmodel}
+\end{figure*}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exploring the Flare Rate Evolution}
+\label{sec:model}
+
+test the model out in detail. diff masses, diff ages....
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/eqnFFD_mass1}
+\includegraphics[width=3.5in]{figures/eqnFFD_mass2}
+\caption{
+Our best-fit flare evolution model showing the predicted FFD evaluated at four age bins for a $0.5 M_\odot$ (top) and $1.0 M_\odot$ star (bottom). While the change in FFD slopes as a function of age is negligible, the difference as a function of mass is significant. Note: These FFDs are drawn at the same energy ranges for ease of comparison, but do not correspond to the specific flare energies detected at these masses.
+}
+\label{fig:model}
+\end{figure}
+
+
+
+even make pretty grids, which capture our expectation that M dwarfs flare a lot and for a long time.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/eqnFFD_grid35}
+\includegraphics[width=3.5in]{figures/eqnFFD_grid_R1s}
+\caption{
+Our best-fit FFD evolution model evaluated over a grid of masses and ages, showing the cumulative flare rate $R_{35}$ for a fixed energy of $10^35$ erg (top), and at an equivalent duration of 1 second, i.e. $R_{1s} = $ 1 sec $\times L_{quies}$ (bottom). The latter clearly shows that low-mass stars produce more flares relative to their quiescent luminosity, while all stars show a decrease in their specific flare rate over time.
+}
+\label{fig:grid}
+\end{figure}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%\section{Flares versus H$\alpha$ Emission}
+%
+%made this in Columbia - is there an age correlation we can make? (akin to the LX/Lbol vs age plot - is there an Halpha vs age?)
+%
+%if we add clusters, Stephanie has data for Praesepe
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=3.5in]{figures/flare_vs_lhalbol.png}
+%\caption{
+%H$\alpha$ vs flare energy
+%}
+%\label{fig:halpha}
+%\end{figure}
+%
+
+
+
+%%%%%%%%%%%%%%%%%%%
+%\section{Flares versus Galactic Height}
+%Cumulative distribution of flare stars as a function of galactic latitude (or height if I'm willing to make the calculation)
+%Height should be easy enough, just use distance I'm assuming from isochrone fits
+%
+%Similar finding to \citet{kowalski2009} and \citet{hilton2010} for flare stars being more confined to the galactic plane than ``active'' stars (measured from H$\alpha$.) This is consistent with model of flares being sensitive to rotation {\it earlier}, this flare activity dropping sooner in a stars life (lower scale height in Galaxy), and thus a break from saturation at smaller Rossby Number
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Kinematic ages?}
+%use Gaia - good?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+
+this is the first time a direct connection between stellar flare energy and other traditional magnetic activity indicators has been determined, tying the occurrence of flares on small size scales to the total chromospheric activity of the star.
+
+
+flares in clusters not analyzed here, but basically no flares observed in original \Kepler cluster sample
+
+could flares be an important piece of the lower stellar atmosphere? models of ellerman bombs, etc \citep[e.g.][]{hansteen2017}. \Kepler cannot see flares small enough in energy. However, if the nano/micro-flare rate evolves coherantly with the large/super-flare rates observed here, this atmospheric support mechanism must change.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%
+\acknowledgments
+JRAD is supported by an NSF Astronomy and Astrophysics Postdoctoral Fellowship under award AST-1501418.
+
+JRAD acknowledges support from the DIRAC Institute in the Department of Astronomy at the University of Washington. The DIRAC Institute is supported through generous gifts from the Charles and Lisa Simonyi Fund for Arts and Sciences, and the Washington Research Foundation
+
+
+Kepler was competitively selected as the tenth Discovery mission. Funding for this mission is provided by NASAÕs Science Mission Directorate.
+
+
+
+\bibliography{/Users/davenpj3/Dropbox/references}
+
+
+\end{document}

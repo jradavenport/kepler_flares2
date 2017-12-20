@@ -33,7 +33,6 @@
 \affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
 \affiliation{Department of Astronomy, University of Washington, Seattle, WA 98195, USA}
 
-
 \author{Kevin R. Covey}
 \affiliation{Department of Physics \& Astronomy, Western Washington University, 516 High St., Bellingham, WA 98225, USA}
 
@@ -49,9 +48,6 @@
 \author{Suzanne L. Hawley}
 \affiliation{Department of Astronomy, University of Washington, Seattle, WA 98195, USA}
 
-
-
-
  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,6 +55,7 @@
 351 stars
 results from our automated survey of stellar flares using the entire Kepler dataset. Matching our flare stars to Kepler rotation periods, we find a decline in the energy emitted in flares as stars spin down. For a subset of Kepler M dwarfs with low resolution followup spectra, we also find a correlation between Halpha luminosity and the energy emitted in flares. These two results give the first definitive evidence of flare rates declining over stellar time, indicating flares are intimately connected to age--rotation--activity evolution of the global stellar dynamo. 
 \end{abstract}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -83,7 +80,6 @@ The \Kepler survey has been used to explore ``super-flare'' activity (events wit
 In this paper we present an ensemble analysis of flare activity in the \Kepler field, based on the flare sample amassed in \citet{davenport2016}. This sample was generated using an automated processing of the entire \Kepler light curve database, and produced a sample of over 4000 candidate flare stars. The \citet{davenport2016} catalog of flares provides the most complete census of flare activity from a large sample of field stars to date, and is the ideal dataset to study the evolution of flare rates with stellar age.
 
 
-
 Here we explore the relationship between flare occurrence rates and stellar ages (derived from rotation periods) for stars in the \Kepler field. Our sample of flare stars with measured rotation periods is detailed in \S\ref{sec:sample}.
 We present three approaches for quantitatively tracing changes in flare activity over time, including modeling the flare frequency distribution as a function of both stellar mass and age in \S\ref{sec:activity}. In \S\ref{sec:model} we explore the empirical evolution of flare activity for our \Kepler sample, and provide an analytic prescription for use in other studies. Finally, a short discussion and comparison to other studies is given in \S\ref{sec:discussion}.
 
@@ -91,29 +87,42 @@ We present three approaches for quantitatively tracing changes in flare activity
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{sample selection}
+\section{Flare Sample}
 \label{sec:sample}
 
-get data from D16, matched to rotation sample of McQuillan. since we care about extending flare rates to entire populations of stars, we have to consider null detections. all Kepler LC's were searched by D16, incl. flare injection tests. so even for stars w/o flares, we have upper limits on flare rates we could have measured.
-all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
+Our sample of flare stars comes from the automated search of \Kepler light curves from \citet{davenport2016}. This study produced the most comprehensive analysis of the \Kepler field for stellar flares, processing every short (1-minute) and long (30-minute) cadence light curve in search of flares. \citet{davenport2016} produced an open-source Python flare analysis codebase named {\tt appaloosa}, designed to detrend (model) \Kepler light curves of both instrumental and astrophysical noise, detect flare candidates (positive, significant outliers), and determine the reliability of the detected flares via artificial flare injection and recovery tests. These completeness tests were run on each continuous local segment of light curve available for every star, resulting in variable completeness limits for each star as the light curve noise properties change. \citet{davenport2016} made both the {\tt appaloosa} code, and the code to generate the figures and results in the paper available online. The results presented in this paper directly extend the work of \citet{davenport2016}, and so we also make our analysis code available as an update to the {\tt appaloosa} project online.\footnote{\url{https://github.com/jradavenport/appaloosa}}
 
 
-three examples of flare stars used in this analysis are shown in Figure \ref{fig:ffd1}. these example stars will be followed through the analysis of the paper, but have not been cherry-picked, just selected to demonstrate a range of flare rates
+The \citet{davenport2016} sample of potential \Kepler flare stars required that within all available data for each star at least 100 candidate flares of any energy, and 10 flares with energies above the 68\% completeness threshold determined by the automated flare injection tests, be recovered. These conservative thresholds potentially could eliminate stars with fewer significant flares from our analysis, as noted by \citet{van-doorsselaere2017}. In \S\ref{sec:activity} and \S\ref{sec:model} we use both a sample of flare stars that pass these cut established by \citet{davenport2016}, and a sample that have no flare event thresholds. The latter is important for exploring the evolution of flare rates down to very low activity states, and indeed for considering null detections appropriately. Note also that stars with no flare event detections by {\tt appaloosa} will still have upper-limits on their flare detectability from the artificial injection tests.
+
+
+
+Since we are focused here on quantifying the changes of flare activity with stellar age, we limit our analysis to stars with measured rotation periods. This is so we can use stellar rotation period as a proxy for age. We note that while the rotation--age connection may be more complex than most gyrochronology prescriptions, e.g. the weakened rotational braking found in Solar-age stars from \citet{van-saders2016}, rotation nonetheless increases continuously with age (i.e. stars nominally do not speed up while on the main sequence). Rotation is therefore a good means to {\it sort} stars by their age, even if the specific age derived from gyrochronology relations is not accurate. Our work here is further insulated from these effects, as the sample of flare star candidates from \citet{davenport2016} predominantly have rotation ages of $\lesssim 1$ Gyr. We specifically adopt for our analysis the rotation period catalog of \citet{mcquillan2014}, which derived 34,040 periods from \Kepler data using the Autocorrelation Function, and did extensive testing against other period-finding approaches such as the Lomb-Scargle Periodogram. 
+
+
+The \citet{davenport2016} sample of $\sim$4,000 candidate flare stars contains several types of contamination from variable stars that do not exhibit flaring activity. For example, we found some eclipsing binaries and pulsating stars were able to fool the {\tt appaloosa} code, due to sharp features in their light curve, particularly at the 30-minute cadence. The worst cases of this failure appear to be caused by insufficient modeling of periodic signals by {\tt appaloosa}, namely by using too few sine curves to fit each significant period found and leaving sharp or peaky structures in the model residuals. Future versions of {\tt appaloosa} will improve on this detrending algorithm, and we urge caution when adopting the \citet{davenport2016} flare sample blindly. Our analysis is largely free from such contamination, as we require each star to have an identified rotation period by \citet{mcquillan2014}, who rejected such eclipsing and pulsating targets.
+
+
+
+In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency distributions for three example flare stars from the \citet{davenport2016} sample that also have rotation periods measured in \citet{mcquillan2014}. These example stars will be followed through the analysis of the paper, and were selected to demonstrate a range of flare rates and rotation periods. In total we study the flare rate evolution from 3XX stars with rotation periods from \citet{mcquillan2014} that pass the \citet{davenport2016} flare selection criteria. We also analyze 2Y,YYY stars with rotation periods that were searched for flares, some with marginal levels of flare activity.
+
+%all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
+
 
 \begin{figure*}[!t]
 \centering
+\includegraphics[width=2.25in]{figures/6117832lc.png}
+\includegraphics[width=2.25in]{figures/7420545lc.png}
+\includegraphics[width=2.25in]{figures/10071383lc.png}\\
 \includegraphics[width=2.25in]{figures/6117832_ffd}
 \includegraphics[width=2.25in]{figures/7420545_ffd}
 \includegraphics[width=2.25in]{figures/10071383_ffd}
 \caption{
-Three examples of flare frequency distributions from paper 1. All three examples demonstrate breaks from a single power law frequency distribution at high flare energies.
+Three examples of flare frequency distributions from paper 1. top row: sample light curves. Bottom row: cumulative flare frequency distributions from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
 }
 \label{fig:ffd1}
 \end{figure*}
 
-
-
-we note some contamination exists in the original 4k stars from D16, some binaries and RR Lyr which {\tt appaloosa} incorrectly flagged as flare candidates. While these edge cases do not dominate the sample, we urge caution in not blindly assuming every candidate object from D16 is a bona fide flare star. 
 
 
 
@@ -124,7 +133,7 @@ we note some contamination exists in the original 4k stars from D16, some binari
 
 
 This requires a comparison of flare activity between stars of different masses and ages, as well as at different distances.
-Our discussion in many ways mirrors the review on flare activity by \citet{kunkel1975}, which explored different methods for quantifying and comparing flare activity from heterogeneous photometric studies. 
+Our discussion in many ways mirrors the review on flare activity by Appendix A of \citet{kunkel1975}, which explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level
 
 
 
@@ -139,8 +148,12 @@ In this section we outline three methods for quantifying the flare activity leve
 \label{sec:fracL}
 
 discuss $L_{fl}/L_{Kp}$, originally developed by \citet{lurie2015} in their analysis of \Kepler data for the M5+M5 active binary, GJ 1245AB.
+effectively the integral of the light curve, as \citet{kunkel1975} puts it
+
+also recently used by \citet{yang2017}
 
 this quantity is inspired by the  $L_{H\alpha}/L_{bol}$ for M dwarfs in giving the fractional luminosity of the emission in the chromosphere. The Halpha is done by measuring the equivalent width of Halpha, and then transforming to absolute units using the ``$\chi$'' factor that is spectral type dependent \citep{walkowicz2004}, or equivalently photometric color dependent \citep{douglas2016}.  By summing the equivalent duration for all observed flares we compute $L_{fl}/L_{Kp}$, analogous to integrating the Halpha line into equivalent width. Like the Halpha work, this also does not require accurate distance estimates for each star.
+
 
 As \citet{lurie2015} note, the \Kepler figure needs to be corrected  by a $\chi$-like figure to compare between stars if differing spectral type. This value would compute the bolometric flux correction through the \Kepler bandpass as a function of spectral type. 
 use bolometric magnitudes from Legget+1996? good discussion in \citet{douglas2016} about doing this carefully with model spectra as mean flux in 2 windows, which should be useful. If we assume a ``gray'' response (no intrinsic shape to the flare SED), then this correction factor is as simple as creating the ratio of $f_{obs} / f_{bol}$, directly equivalent to the $\chi$ factor.  In this case, the very wide bandpass of the \Kepler filter means the $\chi$ factor is relatively close to 1, and doesn't change much between spectral types. We demonstrate this in Figure \ref{fig:chi}, using the outputs for a 600 Myr PARSEC isochrone from \citet{bressan2012}.
@@ -445,7 +458,7 @@ Kepler was competitively selected as the tenth Discovery mission. Funding for th
 
 
 
-\bibliography{/Users/davenpj3/Dropbox/references}
+\bibliography{/Users/james/Dropbox/references}
 
 
 \end{document}

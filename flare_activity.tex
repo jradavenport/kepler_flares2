@@ -131,25 +131,24 @@ Three examples of flare frequency distributions from paper 1. top row: sample li
 \section{Quantifying Flare Activity}
 \label{sec:activity}
 
-
-This requires a comparison of flare activity between stars of different masses and ages, as well as at different distances.
-Our discussion in many ways mirrors the review on flare activity by Appendix A of \citet{kunkel1975}, which explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level
+In order to accurately measure the evolution of flare rates over time, we must find a suitable metric to characterize flare activity for an ensemble of stars. Typical magnetic activity indicators, such as H$\alpha$ or X-ray flux, are used as disk-integrated measures of magnetically-driven emission from the chromosphere or corona. These quantities are are often presented as relative luminosities, normalized either to a continuum flux, or to the stellar bolometric luminosity.  While the overall rate and maximum intensity of flares for a given star are related to the global magnetic field strength, the specific properties of individual flare events  (e.g. duration, amplitude, morphology) are dependent on small-scale magnetic active regions. Since flare energy is inversely proportional to event occurrence frequency, the measured flare properties for a given star are also dependent on observing depth and baseline. Our flare activity metric must therefore represent the integrated properties of many individual flare events to accurately model a star's magnetic activity state.
 
 
+In this section we outline three methods for quantifying the photometric flare activity between stars, as well as the merits and challenges of each approach. These metrics include the fractional energy emitted in the \Kepler band by flares ($L_{fl}/L_{Kp}$), the cumulative flare rate evaluated at a specific energy, and an analytic model of the entire flare frequency distribution. While all three of these metrics has utility, we believe the latter will be of most value to future investigations, for example of planetary habitability and atmosphere evolution. 
 
-
-how do you really measure the ``activity'' level of a star via flares? Other magnetic activity indicators like H$\alpha$ or X-ray flux measure the filling factor (or density) of the chromosphere or corona, which is driven by B fields. (check NLDS, get wording SLH-approved). while flares occur stochastically, their overall rate and maximum intensity is related to the global B field since the energy of specific events traces the small-scale B fields of active regions.
-
-In this section we outline three methods for quantifying the flare activity level of a star. These include the fractional flare energy ($L_{fl}/L_{Kp}$) used in D16 and introduced by \citet{lurie2015}, the flare rate evaluated at a specific energy, and an analytic model of the entire flare frequency distribution as a function of both stellar mass and age. While all three of these metrics has utility, we believe the latter will be of most value to investigations of habitability.
+We note that the pedagogical discussion here of comparing flare metrics between \Kepler stars is similar in many ways to the review on flare activity by \citet{kunkel1975}. This excellent review explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level, which are directly analogous to the first two approaches advanced here. The third approach, comparing the entire flare frequency distribution between stars, has a long history \citep[e.g. see Fig. 17 of][]{lme1976}, and has even been used for comparing \Kepler flare stars \citep[e.g.][]{ramsay2013,hawley2014}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fractional Flare Luminosity}
 \label{sec:fracL}
 
-discuss $L_{fl}/L_{Kp}$, originally developed by \citet{lurie2015} in their analysis of \Kepler data for the M5+M5 active binary, GJ 1245AB.
-effectively the integral of the light curve, as \citet{kunkel1975} puts it
+%% HERE
 
+discuss $L_{fl}/L_{Kp}$, originally developed by \citet{lurie2015} in their analysis of \Kepler data for the M5+M5 active binary, GJ 1245AB.
+effectively the integral of the light curve, as \citet{kunkel1975} puts it, 
+
+used  by \citet{davenport2016}
 also recently used by \citet{yang2017}
 
 this quantity is inspired by the  $L_{H\alpha}/L_{bol}$ for M dwarfs in giving the fractional luminosity of the emission in the chromosphere. The Halpha is done by measuring the equivalent width of Halpha, and then transforming to absolute units using the ``$\chi$'' factor that is spectral type dependent \citep{walkowicz2004}, or equivalently photometric color dependent \citep{douglas2016}.  By summing the equivalent duration for all observed flares we compute $L_{fl}/L_{Kp}$, analogous to integrating the Halpha line into equivalent width. Like the Halpha work, this also does not require accurate distance estimates for each star.

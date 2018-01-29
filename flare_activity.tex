@@ -118,7 +118,7 @@ In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency dis
 \includegraphics[width=2.25in]{figures/7420545_ffd}
 \includegraphics[width=2.25in]{figures/10071383_ffd}
 \caption{
-Three examples of flare frequency distributions from paper 1. top row: sample light curves. Bottom row: cumulative flare frequency distributions from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
+Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
 }
 \label{fig:ffd1}
 \end{figure*}
@@ -139,38 +139,52 @@ In this section we outline three methods for quantifying the photometric flare a
 We note that the pedagogical discussion here of comparing flare metrics between \Kepler stars is similar in many ways to the review on flare activity by \citet{kunkel1975}. This excellent review explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level, which are directly analogous to the first two approaches advanced here. The third approach, comparing the entire flare frequency distribution between stars, has a long history \citep[e.g. see Fig. 17 of][]{lme1976}, and has even been used for comparing \Kepler flare stars \citep[e.g.][]{ramsay2013,hawley2014}.
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fractional Flare Luminosity}
 \label{sec:fracL}
 
-%% HERE
-
-discuss $L_{fl}/L_{Kp}$, originally developed by \citet{lurie2015} in their analysis of \Kepler data for the M5+M5 active binary, GJ 1245AB.
-effectively the integral of the light curve, as \citet{kunkel1975} puts it, 
-
-used  by \citet{davenport2016}
-also recently used by \citet{yang2017}
-
-this quantity is inspired by the  $L_{H\alpha}/L_{bol}$ for M dwarfs in giving the fractional luminosity of the emission in the chromosphere. The Halpha is done by measuring the equivalent width of Halpha, and then transforming to absolute units using the ``$\chi$'' factor that is spectral type dependent \citep{walkowicz2004}, or equivalently photometric color dependent \citep{douglas2016}.  By summing the equivalent duration for all observed flares we compute $L_{fl}/L_{Kp}$, analogous to integrating the Halpha line into equivalent width. Like the Halpha work, this also does not require accurate distance estimates for each star.
+An intuitive metric for quantifying magnetic activity strength via flares is the total luminosity emitted by flares relative to the nominal quiescent stellar luminosity, written originally as $L_{fl}/L_{Kp}$ by \citet{lurie2015}. This quantity is inspired by traditional magnetic activity measures for low-mass stars, such as $L_{H\alpha}/L_{bol}$  \citep{walkowicz2004} or $L_X/L_{bol}$ \citep{pallavicini1981}, which are normalized relative to the bolometric stellar luminosity. In this case, as presented in \citet{lurie2015}, the flare luminosity is normalized to the quiescent luminosity of the star {\it only} in the \Kepler bandpass. This metric was used by \citet{davenport2016}, and also recently by \citet{yang2017}. % to measure decline in flare activity versus rotation and Rossby number
 
 
-As \citet{lurie2015} note, the \Kepler figure needs to be corrected  by a $\chi$-like figure to compare between stars if differing spectral type. This value would compute the bolometric flux correction through the \Kepler bandpass as a function of spectral type. 
-use bolometric magnitudes from Legget+1996? good discussion in \citet{douglas2016} about doing this carefully with model spectra as mean flux in 2 windows, which should be useful. If we assume a ``gray'' response (no intrinsic shape to the flare SED), then this correction factor is as simple as creating the ratio of $f_{obs} / f_{bol}$, directly equivalent to the $\chi$ factor.  In this case, the very wide bandpass of the \Kepler filter means the $\chi$ factor is relatively close to 1, and doesn't change much between spectral types. We demonstrate this in Figure \ref{fig:chi}, using the outputs for a 600 Myr PARSEC isochrone from \citet{bressan2012}.
+The relative flare luminosity has many advantages as a magnetic activity strength indicator. First, it is algorithmically simple to compute by taking the integral of the flaring portion of the light curve, as described by \citet{kunkel1975}. For \Kepler light curves, this is done by de-trending the non-flaring (quiescent) light curves, including starspot variations, normalizing them to their average relative flux, and then integrating all the identified flares. Integrating the relative flux of a single flare results in a quantity known as the ``equivalent duration'' \citep[e.g. see][]{huntwalker2012}, which has units of time (typically seconds). By integrating the relative flux from {\it all} flares in a \Kepler light curve, we would again have units of time, and so as defined by \citet{lurie2015} $L_{fl}/L_{Kp}$ is simply computed as the integral of the relative flux of all flares, divided by the total observation duration of the light curve, resulting in a unit-less ratio.
 
+
+
+A second appealing aspect of $L_{fl}/L_{Kp}$ as a flare activity indicator is that it compresses the entire observed flare activity of a star, regardless of the duration of the observation window, into a single number. This results in a quantity that has higher signal-to-noise than a specific flare rate, for example. This makes $L_{fl}/L_{Kp}$ ideal for comparing flare activity between stars, even with different observing baselines (e.g. comparing flare activity between active stars with differing numbers of quarters observed by \Kepler).
+
+Thirdly, the light curve data does not need to be flux calibrated, or have accurate distances determined to measure $L_{fl}/L_{Kp}$. Instead the metric is defined totally by the relative flux increases of the flares. This is especially useful for datasets like \Kepler, where the light curves have incredible short-term precision designed to detect small amplitude exoplanet transits, but suffer from large-scale systematics that typically prevent flux calibration. As in the exoplanet transit application, the \% change of the light curve is the only quantity required. This also results in $L_{fl}/L_{Kp}$ being easily compared for many stars at once. \citet{lurie2015}, for example, used $L_{fl}/L_{Kp}$ to measure flare activity for the M5+M5 binary system GJ 1245 AB, and to relate this flare activity to other mid-to-late type M dwarfs such as GJ 1243 \citep{davenport2014b}. 
+
+
+
+% made in a standalone ipython notebook
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3.5in]{figures/flare_chi}
 \caption{
-an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass.
+an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
 }
 \label{fig:chi}
 \end{figure}
 
 
-However, an added complication is that while H$\alpha$ emission occurs over a fairly small range of wavelength, flares emit energy over all observed wavelengths. The shape of this emission in optical wavelengths is typically characterized as a hot blackbody, usually with $T_{eff}\approx10,000$ K, but has been seen to have significant excess emission in both the blue and red \citep[e.g. see][]{kowalski2013}. However, this temperature changes throughout the event in a manner that is often not well characterized, particularly for complex, multi-peaked flare events \citep[e.g.][]{slhadleo,kowalski2012}. thus the contrast between flare and quiescent emission is dependent on both the stellar spectrum and the flare temperature profile. Kowalski citation for detailed work on building a real flare SED in the optical, which might be promising way forward. 
+As \citet{lurie2015} note, to correctly compare flare activity between stars of varyings spectral types (or effective temperatures), the measured quantity $L_{fl}/L_{Kp}$ requires a bolometric luminosity correction. Specifically, a correction must be made for the varying portion of the bolometric flux that is observed within the \Kepler bandpass. This is akin to the ``$\chi$'' parameter, first developed to convert H$\alpha$ equivalent width measurements into  $L_{H\alpha}/L_{bol}$, developed by \citet{walkowicz2004}. \citet{douglas2016} recently produced a thorough discussion on developing a $\chi$ factor using model spectra, and produced an updated table of $\chi$ values as a function of photometric colors in many bands.
+
+In Figure \ref{fig:chi} we demonstrate a similar parameter that can be used for converting measured $L_{fl}/L_{Kp}$ values into $L_{fl}/L_{bol}$, and thus more accurately compare the flare activity level between stars of different masses. The parameter $\chi_{fl}$ was determined using the \Kepler and bolometric luminosities computed for main sequence stars in a 600 Myr isochrone from the PARSEC model grid \citet{bressan2012}. The very wide bandpass of the \Kepler filter means the $\chi_{fl}$ factor is relatively close to 1 for most stars, and doesn't change much between spectral types. For ease of use, we also provide a simple polynomial fit to the curve shown in Figure \ref{fig:chi}:
+\begin{eqnarray}
+\log \chi_{fl} =& -0.0013 (g-i)^4 + 0.021 (g-i)^3 \notag \\
+& -0.146 (g-i)^2 + 0.105 (g-i) \notag \\ 
+& + 0.004
+\end{eqnarray}
 
 
+Note that the $\chi_{fl}$ parameter assumes a ``gray'' spectral response for the flare itself over the \Kepler bandpass. While H$\alpha$ emission occurs over a fairly small range of wavelength for most stars, flares emit energy over all observed wavelengths. The shape of this emission in optical wavelengths is typically characterized as a hot blackbody, usually with $T_{eff}\approx10,000$ K, but has been seen to have significant excess emission in both the blue and red \citep[e.g. see][]{kowalski2013}. This effective temperature also changes throughout the flare event in a manner that is not well characterized, particularly for complex, multi-peaked flare events \citep[e.g.][]{slhadleo,kowalski2012}. \citet{davenport2016} discussed this in terms of estimating the energy of a single flare event, assuming a gray flare response across the \Kepler band. Some other studies assume a flare spectral model, which can in turn imply higher energies for specific events \citep[e.g.][]{gizis2013,maehara2015}. The $\chi_{fl}$ parameter shown in Figure \ref{fig:chi} will similarly underestimate the flare luminosity. However, as in \citet{davenport2016} we believe the best approach is to assume a gray response and not assume a single flare spectrum for all moments of every flare event.
 
+%thus the contrast between flare and quiescent emission is dependent on both the stellar spectrum and the flare temperature profile. Kowalski citation for detailed work on building a real flare SED in the optical, which might be promising way forward. 
+
+
+%% HERE
 the fractional flare energy was used in D16 to show that the flare activity level decreased with increasing Rossby number (decreasing rotation velocity), as shown in Figure \ref{fig:rossby1}.
 {\bf TO DO: Make another version of this figure but correct to Lfl/Lbol.}
 
@@ -183,7 +197,7 @@ Rossby number vs flare energy for sample from Paper 1
 }
 \label{fig:rossby1}
 \end{figure}
-
+      
 other complications for this quantity include varying distances, giving different energy ranges over which flares can be observed. For stars of similar distances this is negligible (GJ 1245AB being ideal). so given the energy range details, and flare temperature profile evolution uncertainties, this quantity is difficult to model with any precision. 
 
 

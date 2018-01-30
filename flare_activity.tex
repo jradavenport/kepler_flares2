@@ -163,13 +163,13 @@ Thirdly, the light curve data does not need to be flux calibrated, or have accur
 \centering
 \includegraphics[width=3.5in]{figures/flare_chi}
 \caption{
-an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
+an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi_{fl}$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
 }
 \label{fig:chi}
 \end{figure}
 
 
-As \citet{lurie2015} note, to correctly compare flare activity between stars of varyings spectral types (or effective temperatures), the measured quantity $L_{fl}/L_{Kp}$ requires a bolometric luminosity correction. Specifically, a correction must be made for the varying portion of the bolometric flux that is observed within the \Kepler bandpass. This is akin to the ``$\chi$'' parameter, first developed to convert H$\alpha$ equivalent width measurements into  $L_{H\alpha}/L_{bol}$, developed by \citet{walkowicz2004}. \citet{douglas2016} recently produced a thorough discussion on developing a $\chi$ factor using model spectra, and produced an updated table of $\chi$ values as a function of photometric colors in many bands.
+As \citet{lurie2015} note, to correctly compare flare activity between stars of varyings spectral types (or effective temperatures), the measured quantity $L_{fl}/L_{Kp}$ requires a bolometric luminosity correction. Specifically, a correction must be made for the varying portion of the bolometric flux that is observed within the \Kepler bandpass. This is akin to the ``$\chi$'' parameter, first developed to convert H$\alpha$ equivalent width measurements into  $L_{H\alpha}/L_{bol}$, developed by \citet{walkowicz2004}. \citet{douglas2014} recently produced a thorough discussion on developing a $\chi$ factor using model spectra, and produced an updated table of $\chi$ values as a function of photometric colors in many bands.
 
 In Figure \ref{fig:chi} we demonstrate a similar parameter that can be used for converting measured $L_{fl}/L_{Kp}$ values into $L_{fl}/L_{bol}$, and thus more accurately compare the flare activity level between stars of different masses. The parameter $\chi_{fl}$ was determined using the \Kepler and bolometric luminosities computed for main sequence stars in a 600 Myr isochrone from the PARSEC model grid \citet{bressan2012}. The very wide bandpass of the \Kepler filter means the $\chi_{fl}$ factor is relatively close to 1 for most stars, and doesn't change much between spectral types. For ease of use, we also provide a simple polynomial fit to the curve shown in Figure \ref{fig:chi}:
 \begin{eqnarray}
@@ -183,25 +183,23 @@ Note that the $\chi_{fl}$ parameter assumes a ``gray'' spectral response for the
 
 %thus the contrast between flare and quiescent emission is dependent on both the stellar spectrum and the flare temperature profile. Kowalski citation for detailed work on building a real flare SED in the optical, which might be promising way forward. 
 
-
-%% HERE
-the fractional flare energy was used in D16 to show that the flare activity level decreased with increasing Rossby number (decreasing rotation velocity), as shown in Figure \ref{fig:rossby1}.
-{\bf TO DO: Make another version of this figure but correct to Lfl/Lbol.}
-
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3.5in]{figures/Rossby_lfllkp_color}
 \includegraphics[width=3.5in]{figures/Rossby_lfllbol_color}
-%\includegraphics[width=3.5in]{figures/color_rot_lfllkp}
 \caption{
 Rossby number vs flare energy for sample from Paper 1.
-Top: The original $L_{fl}/L_{Kp}$ metric, as shown in \citet{davenport2016} versus Rossby number.
-Bottom: The new $L_{fl}/L_{bol}$ metric, using the $\chi_{fl}$ parameter.
+Top: The original $L_{fl}/L_{Kp}$ metric, as shown in \citet{davenport2016} versus Rossby number, with points colored by the stellar masses estimated by \citet{davenport2016} .
+Bottom: The new $L_{fl}/L_{bol}$ metric, corrected using the $\chi_{fl}$ parameter, with point colors as above.
 }
 \label{fig:rossby1}
 \end{figure}
-      
-other complications for this quantity include varying distances, giving different energy ranges over which flares can be observed. For stars of similar distances this is negligible (GJ 1245AB being ideal). so given the energy range details, and flare temperature profile evolution uncertainties, this quantity is difficult to model with any precision. 
+  
+
+\citet{davenport2016} found that the fractional flare luminosity, $L_{fl}/L_{Kp}$, decreased with increasing Rossby number, which is defined as the rotation period divided by the convective turnover timescale (Ro = P$_{rot} / \tau$). This result indicates that the flare activity is decreasing with stellar age, as expected from other tracers of magnetic activity. In Figure \ref{fig:rossby1} we reproduce the result of \citet{davenport2016}, coloring each point by the stellar mass. The lower panel of Figure \ref{fig:rossby1} shows the $\chi_{fl}$ corrected relative flare luminosity, $L_{fl}/L_{bol}$. Since the $\chi_{fl}$ correction factor is near 1 for most stars, the change between these panels is modest. Interestingly, a gradient in the $L_{fl}/L_{bol}$ as a function of mass appears for very rapidly rotating stars, particularly those within the ``saturated dynamo'' regime (Ro $< 0.1$). The higher mass (near Solar mass) stars show a larger fraction of their luminosity emitted through flares in this regime. Though our sample of slower rotators is small, this gradient in $L_{fl}/L_{bol}$ seems to disappear for larger Rossby numbers. 
+
+
+A final complication worth mentioning in the use of the relative flare luminosity metric is due to the varying distances and luminosities of stars in a given magnitude-limited sample. Since detection of flare events (particularly the small-amplitude, lower energy events) depends on the signal to noise of a light curve, the distances to stars can impact the resulting $L_{fl}/L_{Kp}$ measurement. For example, given two identical mass stars with the same underlying flare activity level placed at different distances, the more distant star will have its smaller amplitude flares obscured by photometric noise, and thus a lower $L_{fl}/L_{Kp}$. Similarly, for two stars at a given distance, the lower-mass (fainter) one will have a lower signal-to-noise, and again the flare activity will be under-estimated. As a result, when comparing stars using $L_{fl}/L_{Kp}$ (or $L_{fl}/L_{bol}$), a uniform range of flare event energies must be considered. This presents a major limitation in comparing the flare activity between stars of different masses. We therefore generally recommend $L_{fl}/L_{Kp}$ be used when comparing between stars of similar mass.
 
 
 
@@ -209,6 +207,8 @@ other complications for this quantity include varying distances, giving differen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Specific Flare Rate}
 \label{sec:rate}
+
+%% HERE
 
 instead of integrating all flares, one can utilize their cumulative flare frequency vs energy distribution (FFD), and evaluate it at a fixed energy. this is appealing because the FFD is the typical figure of merit for considering a flare rate, and has been used in some capacity for many years \citep[e.g.][]{lme1976}, was noted as an option in D16 for effectively comparing flare activity levels for stars at different distances. for each star we can compute this by creating the FFD over whatever range of flares was actually observed, regardless of SpT or distance. note this is a reverse cumulative distribution, meaning the specific rates derived are for flares of a certain energy {\it or larger}. this FFD can be fit with a powerlaw function, and then a flare rate is read off the powerlaw function at a fixed energy for all stars.
 

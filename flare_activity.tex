@@ -1,4 +1,4 @@
-\documentclass[preprint2]{aastex61}
+\documentclass[preprint2]{aastex62}
 
 \bibliographystyle{aasjournal}
 \usepackage{graphicx}
@@ -104,7 +104,7 @@ The \citet{davenport2016} sample of $\sim$4,000 candidate flare stars contains s
 
 
 
-In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency distributions for three example flare stars from the \citet{davenport2016} sample that also have rotation periods measured in \citet{mcquillan2014}. These example stars will be followed through the analysis of the paper, and were selected to demonstrate a range of flare rates and rotation periods. In total we study the flare rate evolution from 3XX stars with rotation periods from \citet{mcquillan2014} that pass the \citet{davenport2016} flare selection criteria. We also analyze 2Y,YYY stars with rotation periods that were searched for flares, some with marginal levels of flare activity.
+In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency distributions (FFDs) for three example flare stars from the \citet{davenport2016} sample that also have rotation periods measured in \citet{mcquillan2014}. These example stars will be followed through the analysis of the paper, and were selected to demonstrate a range of flare rates and rotation periods. In total we study the flare rate evolution from 3XX stars with rotation periods from \citet{mcquillan2014} that pass the \citet{davenport2016} flare selection criteria. We also analyze 2Y,YYY stars with rotation periods that were searched for flares, some with marginal levels of flare activity.
 
 %all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
 
@@ -118,7 +118,7 @@ In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency dis
 \includegraphics[width=2.25in]{figures/7420545_ffd}
 \includegraphics[width=2.25in]{figures/10071383_ffd}
 \caption{
-Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
+Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions (FFDs) from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
 }
 \label{fig:ffd1}
 \end{figure*}
@@ -134,9 +134,9 @@ Three examples of flare stars from the \citet{davenport2016} sample. top row: sa
 In order to accurately measure the evolution of flare rates over time, we must find a suitable metric to characterize flare activity for an ensemble of stars. Typical magnetic activity indicators, such as H$\alpha$ or X-ray flux, are used as disk-integrated measures of magnetically-driven emission from the chromosphere or corona. These quantities are are often presented as relative luminosities, normalized either to a continuum flux, or to the stellar bolometric luminosity.  While the overall rate and maximum intensity of flares for a given star are related to the global magnetic field strength, the specific properties of individual flare events  (e.g. duration, amplitude, morphology) are dependent on small-scale magnetic active regions. Since flare energy is inversely proportional to event occurrence frequency, the measured flare properties for a given star are also dependent on observing depth and baseline. Our flare activity metric must therefore represent the integrated properties of many individual flare events to accurately model a star's magnetic activity state.
 
 
-In this section we outline three methods for quantifying the photometric flare activity between stars, as well as the merits and challenges of each approach. These metrics include: 1) the fractional energy emitted in the \Kepler band by flares ($L_{fl}/L_{Kp}$), 2) the cumulative flare rate evaluated at a specific energy, and 3) an analytic model of the entire flare frequency distribution. While all three of these metrics have utility, we believe the latter will be of most value to future investigations, for example in studies of planetary habitability and atmosphere evolution. 
+In this section we outline three methods for quantifying the photometric flare activity between stars, as well as the merits and challenges of each approach. These metrics include: 1) the fractional energy emitted in the \Kepler band by flares ($L_{fl}/L_{Kp}$), 2) the cumulative flare rate evaluated at a specific energy, and 3) an analytic model of the entire flare frequency distribution (FFD). While all three of these metrics have utility, we believe the latter will be of most value to future investigations, for example in studies of planetary habitability and atmosphere evolution. 
 
-We note that the pedagogical discussion here of comparing flare metrics between \Kepler stars is similar in many ways to the review on flare activity by \citet{kunkel1975}. This excellent review explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level, which are directly analogous to the first two approaches advanced here. The third approach, comparing the entire flare frequency distribution between stars, has a long history \citep[e.g. see Fig. 17 of][]{lme1976}, and has even been used for comparing \Kepler flare stars \citep[e.g.][]{ramsay2013,hawley2014}.
+We note that the pedagogical discussion here of comparing flare metrics between \Kepler stars is similar in many ways to the review on flare activity by \citet{kunkel1975}. This excellent review explored two different methods for quantifying and comparing flare activity from heterogeneous photometric studies: the integral of the light curve, and the rate at a given specific energy level, which are directly analogous to the first two approaches advanced here. The third approach, comparing the entire FFD between stars, has a long history \citep[e.g. see Fig. 17 of][]{lme1976}, and has even been used for comparing \Kepler flare stars \citep[e.g.][]{ramsay2013,hawley2014}.
 
 
 
@@ -147,6 +147,7 @@ We note that the pedagogical discussion here of comparing flare metrics between 
 
 An intuitive metric for quantifying magnetic activity strength via flares is the total luminosity emitted by flares relative to the nominal quiescent stellar luminosity, written originally as $L_{fl}/L_{Kp}$ by \citet{lurie2015}. This quantity is inspired by traditional magnetic activity measures for low-mass stars, such as $L_{H\alpha}/L_{bol}$  \citep{walkowicz2004} or $L_X/L_{bol}$ \citep{pallavicini1981}, which are normalized relative to the bolometric stellar luminosity. In this case, as presented in \citet{lurie2015}, the flare luminosity is normalized to the quiescent luminosity of the star {\it only} in the \Kepler bandpass. This metric was used by \citet{davenport2016}, and also recently by \citet{yang2017}. % to measure decline in flare activity versus rotation and Rossby number
 
+{\bf consider: the PSI factor}
 
 The relative flare luminosity has many advantages as a magnetic activity strength indicator. First, it is algorithmically simple to compute by taking the integral of the flaring portion of the light curve, as described by \citet{kunkel1975}. For \Kepler light curves, this is done by de-trending the non-flaring (quiescent) light curves, including starspot variations, normalizing them to their average relative flux, and then integrating all the identified flares. Integrating the relative flux of a single flare results in a quantity known as the ``equivalent duration'' \citep[e.g. see][]{huntwalker2012}, which has units of time (typically seconds). By integrating the relative flux from {\it all} flares in a \Kepler light curve, we would again have units of time, and so as defined by \citet{lurie2015} $L_{fl}/L_{Kp}$ is simply computed as the integral of the relative flux of all flares, divided by the total observation duration of the light curve, resulting in a unit-less ratio.
 
@@ -161,25 +162,25 @@ Thirdly, the light curve data does not need to be flux calibrated, or have accur
 % made in a standalone ipython notebook
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/flare_chi}
+\includegraphics[width=3.5in]{figures/flare_psi}
 \caption{
-an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\chi_{fl}$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
+an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\Psi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
 }
 \label{fig:chi}
 \end{figure}
 
 
-As \citet{lurie2015} note, to correctly compare flare activity between stars of varyings spectral types (or effective temperatures), the measured quantity $L_{fl}/L_{Kp}$ requires a bolometric luminosity correction. Specifically, a correction must be made for the varying portion of the bolometric flux that is observed within the \Kepler bandpass. This is akin to the ``$\chi$'' parameter, first developed to convert H$\alpha$ equivalent width measurements into  $L_{H\alpha}/L_{bol}$, developed by \citet{walkowicz2004}. \citet{douglas2014} recently produced a thorough discussion on developing a $\chi$ factor using model spectra, and produced an updated table of $\chi$ values as a function of photometric colors in many bands.
+As \citet{lurie2015} note, to correctly compare flare activity between stars of varyings spectral types (or effective temperatures), the measured quantity $L_{fl}/L_{Kp}$ requires a bolometric luminosity correction. Specifically, a correction must be made for the varying portion of the bolometric flux that is observed within the \Kepler bandpass. This is akin to the ``$\chi$'' parameter, first developed to convert H$\alpha$ equivalent width measurements into  $L_{H\alpha}/L_{bol}$, developed by \citet{walkowicz2004}. \citet{douglas2014} recently produced a thorough discussion on developing a $\chi$ factor using model spectra, and produced an updated table of $\chi$ values as a function of photometric colors in many bands. We chose to use the letter $\Psi$ as it follows $\chi$ in the Greek alphabet.
 
-In Figure \ref{fig:chi} we demonstrate a similar parameter that can be used for converting measured $L_{fl}/L_{Kp}$ values into $L_{fl}/L_{bol}$, and thus more accurately compare the flare activity level between stars of different masses. The parameter $\chi_{fl}$ was determined using the \Kepler and bolometric luminosities computed for main sequence stars in a 600 Myr isochrone from the PARSEC model grid \citet{bressan2012}. The very wide bandpass of the \Kepler filter means the $\chi_{fl}$ factor is relatively close to 1 for most stars, and doesn't change much between spectral types. For ease of use, we also provide a simple polynomial fit to the curve shown in Figure \ref{fig:chi}:
+In Figure \ref{fig:chi} we demonstrate a similar parameter that can be used for converting measured $L_{fl}/L_{Kp}$ values into $L_{fl}/L_{bol}$, and thus more accurately compare the flare activity level between stars of different masses. The parameter $\Psi$ was determined using the \Kepler and bolometric luminosities computed for main sequence stars in a 600 Myr isochrone from the PARSEC model grid \citet{bressan2012}. The very wide bandpass of the \Kepler filter means the $\Psi$ factor is relatively close to 1 for most stars, and doesn't change much between spectral types. For ease of use, we also provide a simple polynomial fit to the curve shown in Figure \ref{fig:chi}:
 \begin{eqnarray}
-\log \chi_{fl} =& -0.0013 (g-i)^4 + 0.021 (g-i)^3 \notag \\
+\log \Psi =& -0.0013 (g-i)^4 + 0.021 (g-i)^3 \notag \\
 & -0.146 (g-i)^2 + 0.105 (g-i) \notag \\ 
 & + 0.004
 \end{eqnarray}
 
 
-Note that the $\chi_{fl}$ parameter assumes a ``gray'' spectral response for the flare itself over the \Kepler bandpass. While H$\alpha$ emission occurs over a fairly small range of wavelength for most stars, flares emit energy over all observed wavelengths. The shape of this emission in optical wavelengths is typically characterized as a hot blackbody, usually with $T_{eff}\approx10,000$ K, but has been seen to have significant excess emission in both the blue and red \citep[e.g. see][]{kowalski2013}. This effective temperature also changes throughout the flare event in a manner that is not well characterized, particularly for complex, multi-peaked flare events \citep[e.g.][]{slhadleo,kowalski2012}. \citet{davenport2016} discussed this in terms of estimating the energy of a single flare event, assuming a gray flare response across the \Kepler band. Some other studies assume a flare spectral model, which can in turn imply higher energies for specific events \citep[e.g.][]{gizis2013,maehara2015}. The $\chi_{fl}$ parameter shown in Figure \ref{fig:chi} will similarly underestimate the flare luminosity. However, as in \citet{davenport2016} we believe the best approach is to assume a gray response and not assume a single flare spectrum for all moments of every flare event.
+Note that the $\Psi$ parameter assumes a ``gray'' spectral response for the flare itself over the \Kepler bandpass. While H$\alpha$ emission occurs over a fairly small range of wavelength for most stars, flares emit energy over all observed wavelengths. The shape of this emission in optical wavelengths is typically characterized as a hot blackbody, usually with $T_{eff}\approx10,000$ K, but has been seen to have significant excess emission in both the blue and red \citep[e.g. see][]{kowalski2013}. This effective temperature also changes throughout the flare event in a manner that is not well characterized, particularly for complex, multi-peaked flare events \citep[e.g.][]{slhadleo,kowalski2012}. \citet{davenport2016} discussed this in terms of estimating the energy of a single flare event, assuming a gray flare response across the \Kepler band. Some other studies assume a flare spectral model, which can in turn imply higher energies for specific events \citep[e.g.][]{gizis2013,maehara2015}. The $\Psi$ parameter shown in Figure \ref{fig:chi} will similarly underestimate the flare luminosity. However, as in \citet{davenport2016} we believe the best approach is to assume a gray response and not assume a single flare spectrum for all moments of every flare event.
 
 %thus the contrast between flare and quiescent emission is dependent on both the stellar spectrum and the flare temperature profile. Kowalski citation for detailed work on building a real flare SED in the optical, which might be promising way forward. 
 
@@ -190,14 +191,13 @@ Note that the $\chi_{fl}$ parameter assumes a ``gray'' spectral response for the
 \caption{
 Rossby number vs flare energy for sample from Paper 1.
 Top: The original $L_{fl}/L_{Kp}$ metric, as shown in \citet{davenport2016} versus Rossby number, with points colored by the stellar masses estimated by \citet{davenport2016} .
-Bottom: The new $L_{fl}/L_{bol}$ metric, corrected using the $\chi_{fl}$ parameter, with point colors as above.
+Bottom: The new $L_{fl}/L_{bol}$ metric, corrected using the $\Psi$ parameter, with point colors as above.
 }
 \label{fig:rossby1}
 \end{figure}
   
 
-\citet{davenport2016} found that the fractional flare luminosity, $L_{fl}/L_{Kp}$, decreased with increasing Rossby number, which is defined as the rotation period divided by the convective turnover timescale (Ro = P$_{rot} / \tau$). This result indicates that the flare activity is decreasing with stellar age, as expected from other tracers of magnetic activity. In Figure \ref{fig:rossby1} we reproduce the result of \citet{davenport2016}, coloring each point by the stellar mass. The lower panel of Figure \ref{fig:rossby1} shows the $\chi_{fl}$ corrected relative flare luminosity, $L_{fl}/L_{bol}$. Since the $\chi_{fl}$ correction factor is near 1 for most stars, the change between these panels is modest. Interestingly, a gradient in the $L_{fl}/L_{bol}$ as a function of mass appears for very rapidly rotating stars, particularly those within the ``saturated dynamo'' regime (Ro $< 0.1$). The higher mass (near Solar mass) stars show a larger fraction of their luminosity emitted through flares in this regime. Though our sample of slower rotators is small, this gradient in $L_{fl}/L_{bol}$ seems to disappear for larger Rossby numbers. 
-
+\citet{davenport2016} found that the fractional flare luminosity, $L_{fl}/L_{Kp}$, decreased with increasing Rossby number, which is defined as the rotation period divided by the convective turnover timescale (Ro = P$_{rot} / \tau$). This result indicates that the flare activity is decreasing with stellar age, as expected from other tracers of magnetic activity. In Figure \ref{fig:rossby1} we reproduce the result of \citet{davenport2016}, coloring each point by the stellar mass. The lower panel of Figure \ref{fig:rossby1} shows the $\Psi$ corrected relative flare luminosity, $L_{fl}/L_{bol}$. Since the $\Psi$ correction factor is near 1 for most stars, the change between these panels is modest. Interestingly, a gradient in the $L_{fl}/L_{bol}$ as a function of mass appears for very rapidly rotating stars, particularly those within the ``saturated dynamo'' regime (Ro $< 0.1$). The higher mass (near Solar mass) stars show a larger fraction of their luminosity emitted through flares in this regime. Though our sample of slower rotators is small, this gradient in $L_{fl}/L_{bol}$ seems to disappear for larger Rossby numbers. 
 
 A final complication worth mentioning in the use of the relative flare luminosity metric is due to the varying distances and luminosities of stars in a given magnitude-limited sample. Since detection of flare events (particularly the small-amplitude, lower energy events) depends on the signal to noise of a light curve, the distances to stars can impact the resulting $L_{fl}/L_{Kp}$ measurement. For example, given two identical mass stars with the same underlying flare activity level placed at different distances, the more distant star will have its smaller amplitude flares obscured by photometric noise, and thus a lower $L_{fl}/L_{Kp}$. Similarly, for two stars at a given distance, the lower-mass (fainter) one will have a lower signal-to-noise, and again the flare activity will be under-estimated. As a result, when comparing stars using $L_{fl}/L_{Kp}$ (or $L_{fl}/L_{bol}$), a uniform range of flare event energies must be considered. This presents a major limitation in comparing the flare activity between stars of different masses. We therefore generally recommend $L_{fl}/L_{Kp}$ be used when comparing between stars of similar mass.
 
@@ -208,13 +208,18 @@ A final complication worth mentioning in the use of the relative flare luminosit
 \subsection{Specific Flare Rate}
 \label{sec:rate}
 
-%% HERE
+Rather than integrating the relative flux from all detected flares within a light curve, as outlined in \S\ref{sec:fracL}, flare activity can be expressed as a specific occurrence frequency. Since observable flares occur with a wide range of energies for a given star, such a frequency should be reported for flares of a given energy {\it or larger} (e.g. 10 flares per year with energies of $10^{32}$ erg or larger). This is equivalent to evaluating the flare frequency distribution (FFD; see Figure \ref{fig:ffd1}) at a given energy. Here we present this metric as $R_{32}$, with the subscript denoting the $\log$ energy that rate is evaluated at, and with units of cumulative number per day.
 
-instead of integrating all flares, one can utilize their cumulative flare frequency vs energy distribution (FFD), and evaluate it at a fixed energy. this is appealing because the FFD is the typical figure of merit for considering a flare rate, and has been used in some capacity for many years \citep[e.g.][]{lme1976}, was noted as an option in D16 for effectively comparing flare activity levels for stars at different distances. for each star we can compute this by creating the FFD over whatever range of flares was actually observed, regardless of SpT or distance. note this is a reverse cumulative distribution, meaning the specific rates derived are for flares of a certain energy {\it or larger}. this FFD can be fit with a powerlaw function, and then a flare rate is read off the powerlaw function at a fixed energy for all stars.
+The specific flare rate has been used in some capacity for many years for comparing flare activity levels between stars \citep[e.g.][]{lme1976}, and was noted by \citet{davenport2016} as an effective metric for comparing flare activity levels between stars at different distances. Since the specific flare rate is generated from the FFD, it can in principle be evaluated at energies {\it not} observed for a given star by fitting and extrapolating a powerlaw function to the FFD. This is helpful for comparing between stars with very different observing durations where one star may not have produced many large flares to compare to, or for comparing stars at significantly different distances where small amplitude flares from the fainter are not detectable. What is required for projecting a rate, however, is a sufficient number of flares be observed to adequately measure the power law distribution in the FFD.
 
-In Figure \ref{fig:rossby2} we demonstrate the flare rate evaluated at an energy of $\log \varepsilon = 35$ erg, written as $R_{35}$, again versus the Rossby number. A clear gradient in the implied flare rate is seen as a function of mass, reproducing the previously known fact that while low-mass stars have a high flare rate and can emit a large fraction of their luminosity in flares, the actual flares are relatively lower energy. 
+This specific flare rate metric is also appealing due to its straight forward units, i.e. number of flares per day, and can be useful when considering the impact of flares on other observable properties. For example, \citet{davenport2016b} report for Proxima Cen a specific rate for superflares of $R_{33}=8$ per year that may impact exoplanet habitability, and a rate of $R_{28}=63$ per day for events having amplitudes comparable to an exoplanet transit signal.
 
-This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
+%instead of integrating all flares, one can utilize their cumulative flare frequency vs energy distribution (FFD), and evaluate it at a fixed energy. this is appealing because the FFD is the typical figure of merit for considering a flare rate, and has been used in some capacity for many years \citep[e.g.][]{lme1976}, was noted as an option in D16 for effectively comparing flare activity levels for stars at different distances. for each star we can compute this by creating the FFD over whatever range of flares was actually observed, regardless of SpT or distance. note this is a reverse cumulative distribution, meaning the specific rates derived are for flares of a certain energy {\it or larger}. this FFD can be fit with a powerlaw function, and then a flare rate is read off the powerlaw function at a fixed energy for all stars.
+
+In Figure \ref{fig:rossby2} we demonstrate the specific flare rate $R_{35}$ for the same sample of stars shown in Figure \ref{fig:rossby1}. Here we explore both the dependence on mass and Rossby number (top) and the observed color and rotation period (bottom). The energy of $10^{35}$ erg was selected as the average event energy observed in the \citet{davenport2016} flare census. For stars of a given mass or color, the specific flare rate declines as expected, consistent with the results from the previous section. 
+However, a gradient in $R_{35}$ is seen as a function of both mass and color. This is due to the specific flare rates being lower for low-mass stars, reproducing the previously known result that while low-mass stars produce a high rate of observable flares and can produce a large fraction of their luminosity in flares, the actual rate of events with solar-type flare energies is low. 
+
+%This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
 
 
 \begin{figure}[!t]
@@ -228,39 +233,15 @@ specific flare rate evaluated at log E = 35 as a function of the rossby number (
 \end{figure}
 
 
+
+%% HERE
+
+%candelaresi2014 explored this space a little
+
 A similar approach is to pick a flare energy to evaluate the FFD fit that scales with the bolometric luminosity of the star. A flare event with an equivalent duration of $P=1$ sec by definition has an energy equal to the bolometric luminosity of the star integrated for 1 second
 In Figure X we show the flare rate evaluated at an energy of $P=1$ sec, written as $R_{1s}$, versus the Rossby number.
 {\bf TO DO: make version of this figure using R1s for the observed data, scaling with bolometric luminosity}
 
-
-
-%try splitting this sample in to mass bins (before/after mid K?) Does the trend go away at the latest SpT's?
-%
-%explore this space with a better fit, using MCMC to understand degeneracy between parameters (slope vs break)
-
-
-
-%candelaresi2014 explored this space a little
-
-
-%get Rossby-versus-age trend, eqn provided in \citet{vardavas2005}
-%how much of the young Sun's energy was emitted in flares? how much today - does that match with measurements? (not sure where to pull this info from)
-
-
-
-
-
-
-
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=3.5in]{figures/color_rot_lfllkp}
-%\includegraphics[width=3.5in]{figures/color_rot_R35}
-%\caption{
-%Change relative flare luminosity as a function of both stellar rotation period and color.
-%}
-%\label{fig:colorrot}
-%\end{figure}
 
 
 

@@ -229,23 +229,37 @@ Specific flare rate ($R_{35}$), evaluated at an energy of log E = 35 erg as a fu
 \end{figure}
 
 
-In Figure \ref{fig:rossby2} we demonstrate the specific flare rate $R_{35}$ for the same sample of stars shown in Figure \ref{fig:rossby1}. Here we explore both the dependence on mass and Rossby number (top) and the observed color and rotation period (bottom). The energy of $10^{35}$ erg was selected as the average event energy observed in the \citet{davenport2016} flare census. For stars of a given mass or color, the specific flare rate declines as expected, consistent with the results from the previous section. 
-However, a gradient in $R_{35}$ is seen as a function of both mass and color. This is due to the specific flare rates being lower for low-mass stars, reproducing the previously known result that while low-mass stars produce a high rate of observable flares and can produce a large fraction of their luminosity in flares, the actual rate of events with solar-type flare energies is low. 
+In Figure \ref{fig:rossby2} we demonstrate the specific flare rate $R_{35}$ for the same sample of stars shown in Figure \ref{fig:rossby1}. Here we explore both the dependence on mass and Rossby number (top) and the observed color and rotation period (bottom). The energy of $10^{35}$ erg was selected as the average event energy observed in the \citet{davenport2016} flare census. For stars at a given mass or color the specific flare rate declines with increasing rotation period (or Rossby number), consistent with the results from the previous section. The specific flare rate is therefore a simple and effective way to compare flare rates between stars at different distances and under vastly different observing conditions, provided the stars are comparable in color (mass).
+
+
+However, a gradient in $R_{35}$ in Figure \ref{fig:rossby2} is seen as a function of both mass and color due to the specific flare rates being lower for low-mass stars at a given energy. The specific flare rate shows an unintuitive trend when comparing flare rates between stars of different masses, whereby lower-mass stars appear {\it less} active.
+This reproduces the previously known effect that while low-mass stars produce a high rate of observable flares and can produce a large fraction of their luminosity in flares, the actual rate of events with solar-type flare energies is low. 
+
 
 %This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
+
+
+To overcome this unintuitive behavior, we can correct the specific flare rate for the difference in quiescent stellar luminosity between stars. Rather than pick a single event energy to evaluate all FFD's at, we instead pick a flare energy that scales with the star's luminosity. A flare event with an equivalent duration of $P=1$ second by definition has an energy equal to the quiescent luminosity of the star integrated for 1 second. A sensible energy to choose for evaluating the FFD at therefore would be the star's quiescent luminosity in the \Kepler band. We will denote this adjusted specific flare rate as $R_{1s}$, or literally the flare rate for events with an equivalent duration of 1 second. In Figure \ref{fig:R1s} we show the rotation--color space for the same sample of stars as a function of their $R_{1s}$ specific flare rate. 
+
+Note: the bolometric luminosity would also be a good choice for defining the comparison energy, but as we explored in the development of the $\Psi$ correction factor above, the ratio of $L_{Kp}/L_{bol}$ is typically near 1 for solar-type stars. 
+
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/color_rot_R1s}
+\caption{
+The Specific flare rate ($R_{1s}$), evaluated at an energy that is equal to an equivalent duration of 1 second
+}
+\label{fig:R1s}
+\end{figure}
+
+
 
 
 
 
 %% HERE
-
-A similar approach is to pick a flare energy to evaluate the FFD fit that scales with the bolometric luminosity of the star. A flare event with an equivalent duration of $P=1$ sec by definition has an energy equal to the bolometric luminosity of the star integrated for 1 second
-In Figure X we show the flare rate evaluated at an energy of $P=1$ sec, written as $R_{1s}$, versus the Rossby number.
-{\bf TO DO: make version of this figure using R1s for the observed data, scaling with bolometric luminosity}
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[!ht]

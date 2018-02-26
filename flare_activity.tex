@@ -147,7 +147,7 @@ We note that the pedagogical discussion here of comparing flare metrics between 
 
 An intuitive metric for quantifying magnetic activity strength via flares is the total luminosity emitted by flares relative to the nominal quiescent stellar luminosity, written originally as $L_{fl}/L_{Kp}$ by \citet{lurie2015}. This quantity is inspired by traditional magnetic activity measures for low-mass stars, such as $L_{H\alpha}/L_{bol}$  \citep{walkowicz2004} or $L_X/L_{bol}$ \citep{pallavicini1981}, which are normalized relative to the bolometric stellar luminosity. In this case, as presented in \citet{lurie2015}, the flare luminosity is normalized to the quiescent luminosity of the star {\it only} in the \Kepler bandpass. This metric was used by \citet{davenport2016}, and also recently by \citet{yang2017}. % to measure decline in flare activity versus rotation and Rossby number
 
-{\bf consider: the PSI factor}
+%{\bf consider: the PSI factor}
 
 The relative flare luminosity has many advantages as a magnetic activity strength indicator. First, it is algorithmically simple to compute by taking the integral of the flaring portion of the light curve, as described by \citet{kunkel1975}. For \Kepler light curves, this is done by de-trending the non-flaring (quiescent) light curves, including starspot variations, normalizing them to their average relative flux, and then integrating all the identified flares. Integrating the relative flux of a single flare results in a quantity known as the ``equivalent duration'' \citep[e.g. see][]{huntwalker2012}, which has units of time (typically seconds). By integrating the relative flux from {\it all} flares in a \Kepler light curve, we would again have units of time, and so as defined by \citet{lurie2015} $L_{fl}/L_{Kp}$ is simply computed as the integral of the relative flux of all flares, divided by the total observation duration of the light curve, resulting in a unit-less ratio.
 
@@ -164,7 +164,7 @@ Thirdly, the light curve data does not need to be flux calibrated, or have accur
 \centering
 \includegraphics[width=3.5in]{figures/flare_psi}
 \caption{
-an approximation of the flare $\chi$, the correction factor that can be used to convert the observed fractional flare energy  $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\Psi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}.
+Flare $\Psi$, the correction factor (black line) that can be used to convert the observed fractional flare energy $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\Psi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}. A polynomial fit to the $\Psi$ factor is also shown (blue line), and is described in the text below.
 }
 \label{fig:chi}
 \end{figure}
@@ -236,15 +236,6 @@ However, a gradient in $R_{35}$ in Figure \ref{fig:rossby2} is seen as a functio
 This reproduces the previously known effect that while low-mass stars produce a high rate of observable flares and can produce a large fraction of their luminosity in flares, the actual rate of events with solar-type flare energies is low. 
 
 
-%This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
-
-
-To overcome this unintuitive behavior, we can correct the specific flare rate for the difference in quiescent stellar luminosity between stars. Rather than pick a single event energy to evaluate all FFD's at, we instead pick a flare energy that scales with the star's luminosity. A flare event with an equivalent duration of $P=1$ second by definition has an energy equal to the quiescent luminosity of the star integrated for 1 second. A sensible energy to choose for evaluating the FFD at therefore would be the star's quiescent luminosity in the \Kepler band. We will denote this adjusted specific flare rate as $R_{1s}$, or literally the flare rate for events with an equivalent duration of 1 second. In Figure \ref{fig:R1s} we show the rotation--color space for the same sample of stars as a function of their $R_{1s}$ specific flare rate. 
-
-Note: the bolometric luminosity would also be a good choice for defining the comparison energy, but as we explored in the development of the $\Psi$ correction factor above, the ratio of $L_{Kp}/L_{bol}$ is typically near 1 for solar-type stars. 
-
-
-
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3.5in]{figures/color_rot_R1s}
@@ -256,10 +247,18 @@ The Specific flare rate ($R_{1s}$), evaluated at an energy that is equal to an e
 
 
 
+%This is a good metric for comparing the flare rate of objects within a narrow range of temperature or spectral type, but whose distances and therefore flare energy sensitivity ranges are vastly different. Also good for compressing flare data into a single number that makes use of all flares in FFD.
+
+
+To overcome this unintuitive behavior, we can correct the specific flare rate for the difference in quiescent stellar luminosity between stars. Rather than pick a single event energy to evaluate all FFD's at, we instead pick a flare energy that scales with the star's luminosity. A flare event with an equivalent duration of $P=1$ second by definition has an energy equal to the quiescent luminosity of the star integrated for 1 second. A sensible energy to choose for evaluating the FFD at therefore would be the star's quiescent luminosity in the \Kepler band\footnote{The bolometric luminosity would also be a good choice for defining the comparison energy, but as we explored in the development of the $\Psi$ correction factor, the ratio of $L_{Kp}/L_{bol}$ is typically near 1 for solar-type stars.}. We will denote this adjusted specific flare rate as $R_{1s}$, or literally the flare rate for events with an equivalent duration of 1 second. In Figure \ref{fig:R1s} we show the rotation--color space for the same sample of stars as a function of their $R_{1s}$ specific flare rate. This adjusted specific flare rate exhibits the same decrease in flare activity with age (rotation), but is improved in that the low-mass stars display a higher flare activity level relative to their luminosity.
 
 
 
-%% HERE
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[!ht]
@@ -281,12 +280,17 @@ Average FFD, combining all available quarters of \Kepler data, for stars in the 
 \subsection{Modeling the Flare Frequency Distribution}
 \label{sec:ffd}
 
-Rather than reducing the entire observed sample of flares for a given star down to a single metric, we can instead characterize the flare frequency distribution. the model would produce the mean, or expected, flare frequency distribution for all stars  at any age, mass, flare energy.
-this good because FFD is, again, the figure of merit when discussing solar and stellar flare rates. this also good b/c allows us to compare flare energy distributions between stars of different masses, or distances (changes observable energy range).
+The previous two metrics presented above have the useful property of reducing the complexity of the observed flaring behavior into a single quantity. While these are good approaches for easily comparing flare activity between stars (given certain caveats discussed above), such simple metrics neglect the important structure that is present in the full FFD (flare frequency distribution). Rather than try to fully reduce the complexity of the FFD down to a single number, here we demonstrate how to quantitatively use the full FFD to describe the evolution of stellar flare activity.
 
+%Stars at a given age and mass may have different coverage in flare energy that are observed, due to considerations of distance, signal to noise, and observing duration as described in \S\ref{sec:rate}. Identical stars could also have nearly the same observed flare activity, but show a different slope in their FFD's. 
 
-In Figure \ref{fig:meanffd} we show the FFD for our sample of NNN stars with measured rotation periods and good flare rates, separated into six bins based on their $g-i$ colors. Thus the stars within each bin have roughly similar masses, {\bf ranging from M=1.1 to M=0.3?}. Each FFD shown is actually the mean FFD for a single star, averaged over all available qtrs of \Kepler data.
-Each FFD is colored by the rotation period reported by \citet{mcquillan2014}, with increasing rotation periods from red to blue.
+Comparing evolution of the entire FFD between stars requires considering a four dimensional space: cumulative flare frequency (the ordinate variable) as a function of flare event energy, stellar mass (or color), and age (or rotation period). 
+Figure \ref{fig:meanffd} shows the FFDs for our sample of NNN stars with measured rotation periods, separated into six bins based on their observed $g-i$ colors (as a proxy for mass).
+Each line shown is actually the mean FFD for a single star using all available quarters of \Kepler data, the same as the average shown in Figure \ref{fig:ffd1}.
+The FFD lines are colored by the rotation period reported by \citet{mcquillan2014}, with increasing rotation periods from red to blue. The panels of Figure \ref{fig:meanffd} represent slices in mass space of the four dimensional data space.
+
+%% HERE
+
 a very clear trend in the flare frequency versus rotation periods is seen, with flare rates monotonically deceasing as stars lose angular momentum. Stars of higher mass have higher energy flares recovered, since the star is intrinsically brighter and a given fractional amplitude of flux corresponds to larger luminosity increase. the low-energy cutoff in each FFD is determined by the flare injection tests of D16. A bias is seen where rapid rotators have slightly higher energy cutoffs, due to increased starspot amplitudes that make flare recovery more difficult for the iterative algorithm of D16.
 Since colors of stars are in small bins, the energy zeropoints used to transform relative EDs into energies have very small differences. these FFDs show that the flare rate model idea empirically works.
 

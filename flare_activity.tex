@@ -286,21 +286,24 @@ The previous two metrics presented above have the useful property of reducing th
 
 Comparing evolution of the entire FFD between stars requires considering a four dimensional space: cumulative flare frequency (the ordinate variable) as a function of flare event energy, stellar mass (or color), and age (or rotation period). 
 Figure \ref{fig:meanffd} shows the FFDs for our sample of NNN stars with measured rotation periods, separated into six bins based on their observed $g-i$ colors (as a proxy for mass).
-Each line shown is actually the mean FFD for a single star using all available quarters of \Kepler data, the same as the average shown in Figure \ref{fig:ffd1}.
-The FFD lines are colored by the rotation period reported by \citet{mcquillan2014}, with increasing rotation periods from red to blue. The panels of Figure \ref{fig:meanffd} represent slices in mass space of the four dimensional data space.
+Each line shown is actually the mean FFD for a single star using all available quarters of \Kepler data, the same as the average FFD shown in Figure \ref{fig:ffd1}.
+Each FFD line is colored by the observed rotation period reported by \citet{mcquillan2014}, with increasing rotation periods from red to blue. Thus the panels of Figure \ref{fig:meanffd} represent slices in mass of the four dimensional data space we are interested in. 
 
-%% HERE
-
-a very clear trend in the flare frequency versus rotation periods is seen, with flare rates monotonically deceasing as stars lose angular momentum. Stars of higher mass have higher energy flares recovered, since the star is intrinsically brighter and a given fractional amplitude of flux corresponds to larger luminosity increase. the low-energy cutoff in each FFD is determined by the flare injection tests of D16. A bias is seen where rapid rotators have slightly higher energy cutoffs, due to increased starspot amplitudes that make flare recovery more difficult for the iterative algorithm of D16.
-Since colors of stars are in small bins, the energy zeropoints used to transform relative EDs into energies have very small differences. these FFDs show that the flare rate model idea empirically works.
+The flare energy range observed within each panel of Figure \ref{fig:meanffd} varies as a function of color bin, as expected from \S\ref{sec:rate}. The low-energy event cutoff for each star is determined by the automated flare injection and recovery tests described by \citet{davenport2016}. A bias is also seen where rapid rotators have slightly higher energy cutoffs due to increased starspot amplitudes that were not perfectly modeled out by {\tt appaloosa}, which made flare recovery more difficult for the iterative algorithm of \citet{davenport2016}.
 
 
+Another potential source of error in these FFDs come from the quiescent luminosities used to transform from the observed relative flare event ``equivalent durations'' into actual energies. \citet{davenport2016} used the observed $g-i$ colors matched to a stellar isochrone to determine the distances and luminosities for each source. These estimates do not preclude binary stars or subgiants from contaminating our list of rotating stars. For example, \citet{davenport2017} demonstrated using Gaia DR1 that a significant fraction of the nearest G dwarfs in the \citet{mcquillan2014} sample appeared to actually be subgiant contaminants. However, Gaia DR1 did not provide accurate distances to the entire Kepler sample, and so refining these distance estimates will have to wait for Gaia DR2. Regardless, we believe this energy zeropoint uncertainty will not significantly affect our analysis here, as we have limited ourselves to considering only the most flare-active stars from the \citet{davenport2016} sample, and because each bin in Figure \ref{fig:meanffd} includes sources from a small range in stellar color.
 
-For each star, need to convert the observed units (color, period) in to theoretical units (mass, age)
-color into mass via isochrone in D16.  problems here, of course. new version of KIC stats (Stellar-17) provides another way to test this. our masses generally good. very few potential giants in our final sample of rotating stars {\bf CHECK Stellar-17 vs final sample}
+
+A decrease in the observed flare frequency is seen as a function of rotation period in Figure \ref{fig:meanffd} for every color bin, with flare rates monotonically deceasing as stars lose angular momentum. This is the evolution in flare activity we wish to model. Qualitatively the flare activity decreases more dramatically for the bluer stars, consistent with results from e.g. Figure \ref{fig:R1s}, and our expectations from other measures of stellar magnetic activity over time \citep[e.g.][]{shkolnik2014}. As \citet{davenport2016} noted for a single flaring G dwarf, a ``break'' in the FFD power law is apparent at the highest flare event energies, and this break energy seems to scale with observed energy range of events within each $g-i$ color bin (i.e. lower-mass stars have a lower break energy). Though we do not fully explore this feature here, we emphasize that it may represent an important limit on the energy budget of stellar active region formation as a function of the total stellar magnetic field strength (i.e. over time).
+
+
+%For each star, need to convert the observed units (color, period) in to theoretical units (mass, age)
+%color into mass via isochrone in D16.  problems here, of course. new version of KIC stats (Stellar-17) provides another way to test this. our masses generally good. very few potential giants in our final sample of rotating stars {\bf CHECK Stellar-17 vs final sample}
 
 age via gyro prescriptions (ruth, etc). problems may exist at older, slower rotators \citep{van-saders2016}, but our sample of flare stars mostly biased towards more active, younger stars.
 
+%% HERE
 
 
 %will Jen van Saders have new gyro stuff out i can use?

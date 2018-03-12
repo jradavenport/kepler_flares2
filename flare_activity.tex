@@ -1,4 +1,4 @@
-\documentclass[preprint2]{aastex62}
+\documentclass[preprint2]{aastex61}
 
 \bibliographystyle{aasjournal}
 \usepackage{graphicx}
@@ -18,7 +18,7 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%
-\title{The Evolution of Flare Activity with Stellar Age from \Kepler}
+\title{The Evolution of Flare Activity with Stellar Age} % from \Kepler
 
 \shorttitle{Flares versus Age}
 \shortauthors{Davenport et al.}
@@ -301,21 +301,14 @@ A decrease in the observed flare frequency is seen as a function of rotation per
 %For each star, need to convert the observed units (color, period) in to theoretical units (mass, age)
 %color into mass via isochrone in D16.  problems here, of course. new version of KIC stats (Stellar-17) provides another way to test this. our masses generally good. very few potential giants in our final sample of rotating stars {\bf CHECK Stellar-17 vs final sample}
 
-To produce a model for the FFD with the most utility for follow-up studies, we convert the colors and periods for each star in our sample into masses and ages, respectively. The $g-i$ color for each star was converted to stellar mass using a 600 Myr isochrone, as described in \citet{davenport206}. Similarly, producing an age for each star requires adopting a ``gyrochrone'' (gyrochronology isochrone) model prescription. Considerable effort has been made to explore the accuracy of such models for main sequence stars at a range of ages in the \Kepler era \citep[e.g.][]{mms+11,angus2015,douglas2016}. Most models produce similar age--rotation estimates for stars between roughly 500 Myr and a few Gyr. However, significant problems appear to exist for older, slower rotators, where a break in the angular momentum loss mechanism results in old stars (Solar age and older) with anomalously fast rotation periods \citep{van-saders2016}. As our sample of flare stars is biased towards the more active, younger main sequence stars, and so we do not expect this spin-down break to affect our results. Our ages come from the \citet{mamajek2008} gyrochrone model. While future gyrochronology models may produce more accurate ages, we believe this model will give an appropriate distribution of ages as a function of the observed rotation period and stellar color.
+To produce a model for the FFD with the most utility for follow-up studies, we convert the colors and periods for each star in our sample into masses and ages, respectively. The $g-i$ color for each star was converted to stellar mass using a 600 Myr isochrone, as described in \citet{davenport2016}. Similarly, producing an age for each star requires adopting a ``gyrochrone'' (gyrochronology isochrone) model prescription. Considerable effort has been made to explore the accuracy of such models for main sequence stars at a range of ages in the \Kepler era \citep[e.g.][]{mms+11,angus2015,douglas2016}. Most models produce similar age--rotation estimates for stars between roughly 500 Myr and a few Gyr. However, significant problems appear to exist for older, slower rotators, where a break in the angular momentum loss mechanism results in old stars (Solar age and older) with anomalously fast rotation periods \citep{van-saders2016}. As our sample of flare stars is biased towards the more active, younger main sequence stars, and so we do not expect this spin-down break to affect our results. Our ages come from the \citet{mamajek2008} gyrochrone model. While future gyrochronology models are likely to produce more accurate ages, we believe this model will give an appropriate distribution of ages as a function of the observed rotation period and stellar color.
+
+
+
 
 %% HERE
 
-
-%will Jen van Saders have new gyro stuff out i can use?
-%this is the big plot i want this paper to be all about. even if i make it a few times with diff age metrics
-
-%{\bf null detections.... figure those out}
-
-
-
-
-we assume powerlaw decrease in FFD evolution. this not totally absurd, since other activity indicators have similar form, including the relative flare luminosity observed in D16.
-We have used the following model to fit the FFD evolution:
+To model the time dependent FFD we have adopted a power law decrease in the flare activity rate over time. Our chosen parameterization is supported by other observations of the decline in other magnetic activity indicators over stellar age, included the fractional flare luminosity discussed in \S\ref{fracL}. Specifically we have used the following model to fit the FFDs of all stars in our sample simultaneously:
 
 \begin{eqnarray}
 \label{eqn:model}
@@ -325,29 +318,15 @@ b =& b_1 \log t + b_2 m + b_3 \nonumber % \log t \, m + b_4
 \end{eqnarray}
 
 \noindent
-where $\varepsilon$ is the flare energy in erg, $t$ is the stellar age in Myr, $m$ is the stellar mass relative to Solar, and the resulting $\nu$ is the cumulative number of flares per day. we fit this first with a least-sq approach {\bf(implement BSFG-S)}, and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. The final parameters in our model are given in Table \ref{tbl:params}.
+Note the first part of this equation is simply the definition of the FFD power law distribution for the reverse cumulative number of flares per day ($\nu$) as a function of flare event energy in erg ($\varepsilon$), written to take the form of a linear equation in log-log space. We then add terms to the coefficients $a$ and $b$ that include linear dependence on the $\log$ of the stellar age ($t$, in Myr), as well as the stellar mass ($m$, relative to solar).  
+
+We explored other parameterizations of this FFD evolution model, including additional cross terms as a function of mass and age, e.g. $a_4 (m \times \log t$). The Bayesian Information Criterion (BIC), however, did not yield a significant increase in the fit to the data given the extra degrees of freedom.
+%Figure \ref{fig:chisq} shows no strong trend in the quality of the model versus either color or period: a reasonable fit all over.
 
 
-\begin{deluxetable}{llll}
-\tablecolumns{4}
-\tablewidth{0pt}
-\tabletypesize{\footnotesize}
-\tablecaption{Best-fit parameters for the FFD evolution model described in Equation \ref{eqn:model}.
-\label{tbl:params}}
-%\tablehead{
-%	\colhead{($\log t$)}&
-%	\colhead{($m$)}&
-%	\colhead{($\log t \, m$)}&
-%	\colhead{}
-%	}
-\startdata
-$a_1=-0.073$  &  $a_2=0.60$ &    $a_3=0.062$ & $a_4=-0.965$\\
-$b_1=2.33$ & $b_2=-18.39$ &  $b_3=-2.337$  &  $b_4=30.69$\\
-\enddata
-\end{deluxetable}
+we fit this first with a least-sq approach {\bf(implement BSFG-S)}, and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. The final parameters in our model are given in Table \ref{tbl:params}.
 
 
-we tried other parameterization of the model, including a 4th term (cross term), but the BIC wasn't better enough to warrant the increase in the degrees of freedom. Figure \ref{fig:chisq} shows no strong trend in the quality of the model versus either color or period: a reasonable fit all over.
 
 %\begin{figure}[!t]
 %\centering
@@ -374,6 +353,29 @@ Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), b
 \end{figure*}
 
 
+
+\begin{deluxetable}{llll}
+\tablecolumns{4}
+\tablewidth{0pt}
+\tabletypesize{\footnotesize}
+\tablecaption{Best-fit parameters for the FFD evolution model described in Equation \ref{eqn:model}.
+\label{tbl:params}}
+\tablehead{}
+%	\colhead{($\log t$)}&
+%	\colhead{($m$)}&
+%	\colhead{($\log t \, m$)}&
+%	\colhead{}
+%	}
+\startdata
+$a_1=-0.073$  &  $a_2=0.60$ &    $a_3=0.062$ & $a_4=-0.965$\\
+$b_1=2.33$ & $b_2=-18.39$ &  $b_3=-2.337$  &  $b_4=30.69$\\
+\enddata
+\end{deluxetable}
+
+
+
+
+%{\bf null detections.... figure those out}
 
 
 

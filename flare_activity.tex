@@ -321,14 +321,16 @@ We explored other parameterizations of this FFD evolution model, including addit
 
 
 %% HERE
+Our model fitting routine uses the
+For each star in our sample we create  array with the FFD, and arrays with the estimated mass and age. Poisson uncertainties in the measured rates are used as errors, with no error in the mass or age dimensions.
+we fit this first with a least-sq approach {\bf(implement BSFG-S)}, %and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. 
+The final parameters in our model are given in Table \ref{tbl:params}.
 
-we fit this first with a least-sq approach {\bf(implement BSFG-S)}, and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. The final parameters in our model are given in Table \ref{tbl:params}.
 
 
 
 
-
-now that we've fit all the FFDs together, we can go back and predict the FFDs in our sample to demonstrate the model is working for specific targets. For example, same targets as before are shown in Figure \ref{fig:ffdmodel}, with model fits.
+now that we've fit all the FFDs together, we can go back and predict the FFDs in our sample to demonstrate the model is working for specific targets. For example, same targets as before are shown in Figure \ref{fig:ffdmodel}, with model fits. as shown, the model is able to reproduce the FFD for most stars very well.
 
 
 \begin{figure*}[!t]
@@ -337,7 +339,7 @@ now that we've fit all the FFDs together, we can go back and predict the FFDs in
 \includegraphics[width=2.25in]{figures/7420545_ffd_fit}
 \includegraphics[width=2.25in]{figures/10071383_ffd_fit}
 \caption{
-Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), but with the resulting flare activity model for each star shown (red line). Note this model is not fit for each star, but instead is developed from our entire sample.}
+Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), but with the resulting flare activity model from Equation \ref{eqn:model} evaluated for each star shown (red line). Note this model was not fit for each star's FFD individually, but instead was fit to our entire sample.}
 \label{fig:ffdmodel}
 \end{figure*}
 
@@ -456,7 +458,7 @@ JRAD is supported by an NSF Astronomy and Astrophysics Postdoctoral Fellowship u
 JRAD acknowledges support from the DIRAC Institute in the Department of Astronomy at the University of Washington. The DIRAC Institute is supported through generous gifts from the Charles and Lisa Simonyi Fund for Arts and Sciences, and the Washington Research Foundation
 
 
-Kepler was competitively selected as the tenth Discovery mission. Funding for this mission is provided by NASAÕs Science Mission Directorate.
+Kepler was competitively selected as the tenth Discovery mission. Funding for this mission is provided by NASA's Science Mission Directorate.
 
 
 

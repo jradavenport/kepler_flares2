@@ -317,18 +317,30 @@ b =& b_1 \log t + b_2 m + b_3 \nonumber
 \noindent
 Note the first part of this equation is simply the definition of the FFD power law distribution for the reverse cumulative number of flares per day ($\nu$) as a function of flare event energy in erg ($\varepsilon$), written to take the form of a linear equation in log-log space. We then add terms to the coefficients $a$ and $b$ that include linear dependence on the $\log$ of the stellar age ($t$, in Myr), as well as the stellar mass ($m$, relative to solar).  
 
-We explored other parameterizations of this FFD evolution model, including additional cross terms as a function of mass and age, e.g. $a_4 (m \times \log t$). The Bayesian Information Criterion (BIC) did not yield a significant increase in the quality of the fit to the data given the extra degrees of freedom. Further, we currently have no theoretical basis for using a more complicated model for flare evolution as a function of time or mass. The possible break in the FFD power law, noted by \citet{davenport2016} and in Figure \ref{fig:ffd1}, was not included in our parameterization of Equation \ref{eqn:model}. Instead we focus on reproducing the single dominant power law FFD relationship, which has been reported to characterize the distribution on the Sun and solar-type stars over more than 10 orders of magnitude in flare energy \citep[e.g. Fig. 9 from][]{shibayama2013}. We also did not attempt to include the ``saturated'' flare activity regime, suggested by \citet{davenport2016} for rapidly rotating stars with Rossby numbers lower than $\sim$0.03, in our FFD model. As \citet{davenport2016} notes, the break does not occur at the same Rossby number as other magnetic activity indicators (typically Ro=0.1) and the support for this break in the \Kepler flare data is currently tenuous. Exploring these additional model parameters is not technically difficult, but additional flare stars from missions like K2 and TESS are needed to determine if they are necessary. 
+We explored other parameterizations of this FFD evolution model, including additional cross terms as a function of mass and age, e.g. $a_4 (m \times \log t)$. The Bayesian Information Criterion (BIC) did not yield a significant increase in the quality of the fit to the data given these extra degrees of freedom. Further, we currently have no theoretical basis for using a more complicated model for flare evolution as a function of time or mass. The possible break in the FFD power law for large energy flares, noted by \citet{davenport2016} and in our Figure \ref{fig:ffd1}, was not included in our parameterization of Equation \ref{eqn:model}. Instead we focus on reproducing the single dominant power law FFD relationship, which has been reported to characterize the distribution of flares on the Sun and solar-type stars over more than 10 orders of magnitude in event energy \citep[e.g. Fig. 9 from][]{shibayama2013}. We also did not attempt to include the ``saturated'' activity regime, suggested by \citet{davenport2016} for rapidly rotating stars with Rossby numbers lower than $\sim$0.03, in our FFD model. As \citet{davenport2016} notes, the break does not occur at the same Rossby number as other magnetic activity indicators (typically Ro=0.1) and the support for this break in the \Kepler flare data is currently tenuous. Exploring these additional model parameters is not technically difficult, but additional flare stars from missions like K2 and TESS are needed to determine if they are necessary. 
+
+
+
+Our model fitting in {\tt Python} required an array containing all of the stellar ages in $\log(t/$Myr) and masses (in units of Solar mass), and all flare event energies in $\log(\varepsilon/$ erg), and produced the cumulative flare rate in $\log (\nu/day)$ for each star. Uncertainties in the flare rate were included in our fit, using the Poisson event counting uncertainty approximation from Equation 12 of \citet{gehrels1986}. No errors for the flare energies, or in our mass and age estimates were used in the fit. The model in Equation \ref{eqn:model} was fit to the entire flare star sample using an error weighted least-squares minimization to generate an initial guess.
+
+The initial fit for Equation \ref{eqn:model} was then refined using the Affine Invariant Markov Chain Monte Carlo (MCMC) ensemble sampler, {\tt emcee} \citep{emcee}. We first ran {\tt emcee}  for a ``burn-in'' phase of 500 steps using 100 walkers seeded around the least-squares solution. The sampler was then run for 100,000 steps to explore parameter space. The MCMC chains were well converged for all 6 free parameters after the 100,000 step run, having an autocorrelation time of $\sim$60 steps for each parameter.
+The final coefficients used for our FFD evolution model were determined using the median of the converged portion of the MCMC chains, and are given in Table \ref{tbl:params}. In Figure \ref{fig:mcmc} we also present the standard {\tt corner} plot \citep{corner} showing the 1- and 2-D posterior  distributions for each free parameter from Equation \ref{eqn:model}.
+%and are designed for use in other studies exploring stellar flare rates over time.
+
+
+
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=6.25in]{figures/triangle}
+\caption{
+triangle plot...
+}
+\label{fig:mcmc}
+\end{figure*}
 
 
 %% HERE
-Our model fitting routine uses the
-For each star in our sample we create  array with the FFD, and arrays with the estimated mass and age. Poisson uncertainties in the measured rates are used as errors, with no error in the mass or age dimensions.
-we fit this first with a least-sq approach {\bf(implement BSFG-S)}, %and then run model with a MCMC {\bf(implement MCMC - add MCMC analysis figures)}. 
-The final parameters in our model are given in Table \ref{tbl:params}.
-
-
-
-
 
 now that we've fit all the FFDs together, we can go back and predict the FFDs in our sample to demonstrate the model is working for specific targets. For example, same targets as before are shown in Figure \ref{fig:ffdmodel}, with model fits. as shown, the model is able to reproduce the FFD for most stars very well.
 
@@ -348,18 +360,20 @@ Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), b
 
 \begin{table}
 \caption{
-Best-fit parameters for the FFD evolution model described in Equation \ref{eqn:model}.
+Median parameters for the FFD evolution model described in Equation \ref{eqn:model} found from our MCMC exploration.
 \label{tbl:params}
 }
 \footnotesize
 \centering
 \begin{tabular}{llll}
 \tableline
-$a_1=-0.073$  &  $a_2=0.60$ &    $a_3=0.062$ & $a_4=-0.965$\\
-$b_1=2.33$ & $b_2=-18.39$ &  $b_3=-2.337$  &  $b_4=30.69$\\
+$a_1=-0.07$  &  $a_2=0.79$ &    $a_3=-1.06$ \\
+$b_1=2.01$ & $b_2=-25.15$ &  $b_3=33.99$  \\
 \end{tabular}
 \end{table}
 
+%('>>> median sample parameters (FIT PARAMS!): ', array([ -0.06850749,   0.79409364,  -1.05784294,   2.00554105,       -25.14517454,  33.98654065]))
+%('>>> stddev sample parameters (ERR PARAMS!): ', array([  0.11144766,   0.39644106,   0.36085105,   3.83074746,        13.61202737,  12.31859685]))
 
 %{\bf null detections.... figure those out}
 

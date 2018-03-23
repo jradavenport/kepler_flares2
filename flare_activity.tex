@@ -87,26 +87,18 @@ We present three approaches for quantitatively tracing changes in flare activity
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Flare Sample}
+\section{Flare Star Sample}
 \label{sec:sample}
 
 Our sample of flare stars comes from the automated search of \Kepler light curves from \citet{davenport2016}. This study produced the most comprehensive analysis of the \Kepler field for stellar flares, processing every short (1-minute) and long (30-minute) cadence light curve in search of flares. \citet{davenport2016} produced an open-source Python flare analysis codebase named {\tt appaloosa}, designed to detrend (model) \Kepler light curves of both instrumental and astrophysical noise, detect flare candidates (positive, significant outliers), and determine the reliability of the detected flares via artificial flare injection and recovery tests. These completeness tests were run on each continuous local segment of light curve available for every star, resulting in variable completeness limits for each star as the light curve noise properties change. \citet{davenport2016} made both the {\tt appaloosa} code, and the code to generate the figures and results in the paper available online. The results presented in this paper directly extend the work of \citet{davenport2016}, and so we also make our analysis code available as an update to the {\tt appaloosa} project online.\footnote{\url{https://github.com/jradavenport/appaloosa}}
 
 
-The \citet{davenport2016} sample of potential \Kepler flare stars required that within all available data for each star at least 100 candidate flares of any energy, and 10 flares with energies above the 68\% completeness threshold determined by the automated flare injection tests, be recovered. These conservative thresholds potentially could eliminate stars with fewer significant flares from our analysis, as noted by \citet{van-doorsselaere2017}. In \S\ref{sec:activity} and \S\ref{sec:model} we use both a sample of flare stars that pass these cut established by \citet{davenport2016}, and a sample that have no flare event thresholds. The latter is important for exploring the evolution of flare rates down to very low activity states, and indeed for considering null detections appropriately. Note also that stars with no flare event detections by {\tt appaloosa} will still have upper-limits on their flare detectability from the artificial injection tests.
+\section{Selecting a Robust Sample}
 
-
-
-Since we are focused here on quantifying the changes of flare activity with stellar age, we limit our analysis to stars with measured rotation periods. This is so we can use stellar rotation period as a proxy for age. We note that while the rotation--age connection may be more complex than most gyrochronology prescriptions, e.g. the weakened rotational braking found in Solar-age stars from \citet{van-saders2016}, rotation nonetheless increases continuously with age (i.e. stars nominally do not speed up while on the main sequence). Rotation is therefore a good means to {\it sort} stars by their age, even if the specific age derived from gyrochronology relations is not accurate. Our work here is further insulated from these effects, as the sample of flare star candidates from \citet{davenport2016} predominantly have rotation ages of $\lesssim 1$ Gyr. We specifically adopt for our analysis the rotation period catalog of \citet{mcquillan2014}, which derived 34,040 periods from \Kepler data using the Autocorrelation Function, and did extensive testing against other period-finding approaches such as the Lomb-Scargle Periodogram. 
+Since we are focused here on quantifying the changes of flare activity with stellar age, we limit our analysis to stars with measured rotation periods so that stellar rotation periods can be used as a proxy for age. We note that while the rotation--age connection may be more complex than most gyrochronology prescriptions, e.g. the weakened rotational braking found in Solar-age stars from \citet{van-saders2016}, rotation nonetheless increases continuously with age (i.e. stars nominally do not speed up while on the main sequence). Rotation is therefore a good means to {\it sort} stars by their age, even if the specific age derived from gyrochronology relations is not accurate. Our work here is further insulated from these effects, as the sample of flare star candidates from \citet{davenport2016} predominantly have rotation ages of $\lesssim 1$ Gyr. We specifically adopt for our analysis the rotation period catalog of \citet{mcquillan2014}, which derived 34,040 periods from \Kepler data using the Autocorrelation Function, and did extensive testing against other period-finding approaches such as the Lomb-Scargle Periodogram. 
 
 
 The \citet{davenport2016} sample of $\sim$4,000 candidate flare stars contains several types of contamination from variable stars that do not exhibit flaring activity. For example, we found some eclipsing binaries and pulsating stars were able to fool the {\tt appaloosa} code, due to sharp features in their light curve, particularly at the 30-minute cadence. The worst cases of this failure appear to be caused by insufficient modeling of periodic signals by {\tt appaloosa}, namely by using too few sine curves to fit each significant period found and leaving sharp or peaky structures in the model residuals. Future versions of {\tt appaloosa} will improve on this detrending algorithm, and we urge caution when adopting the \citet{davenport2016} flare sample blindly. Our analysis is largely free from such contamination, as we require each star to have an identified rotation period by \citet{mcquillan2014}, who rejected such eclipsing and pulsating targets.
-
-
-
-In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency distributions (FFDs) for three example flare stars from the \citet{davenport2016} sample that also have rotation periods measured in \citet{mcquillan2014}. These example stars will be followed through the analysis of the paper, and were selected to demonstrate a range of flare rates and rotation periods. In total we study the flare rate evolution from 3XX stars with rotation periods from \citet{mcquillan2014} that pass the \citet{davenport2016} flare selection criteria. We also analyze 2Y,YYY stars with rotation periods that were searched for flares, some with marginal levels of flare activity.
-
-%all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
 
 
 \begin{figure*}[!t]
@@ -118,10 +110,43 @@ In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency dis
 \includegraphics[width=2.25in]{figures/7420545_ffd}
 \includegraphics[width=2.25in]{figures/10071383_ffd}
 \caption{
-Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions (FFDs) from {\tt appaloosa} flare finding from \citet{davenport2016}. Each FFD is fit with a power law
+Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions (FFDs) from the{\tt appaloosa} flare finding analysis of \citet{davenport2016} for the same three stars. The FFD from each short cadence (blue lines) and long cadence (red lines) dataset is included, as well as the mean FFD (black) with Poisson uncertainties shown. Each star's mean FFD is fit with a power law (heavy navy line), whose slope and intercept in log--log space ($\alpha$ and $\beta$) are noted.
 }
 \label{fig:ffd1}
 \end{figure*}
+
+
+
+% In \S\ref{sec:activity} and \S\ref{sec:model} we use both a sample of flare stars that pass these cut established by \citet{davenport2016}, and a sample that have no flare event thresholds. The latter is important for exploring the evolution of flare rates down to very low activity states, and indeed for considering null detections appropriately. 
+
+
+
+In Figure \ref{fig:ffd1} we show light curves and cumulative flare frequency distributions (FFDs) for three example flare stars from the \citet{davenport2016} sample that also have rotation periods measured in \citet{mcquillan2014}. These example stars will be followed through the analysis of this paper, and were selected to demonstrate a range of flare rates and rotation periods. 
+Each star in the \citet{davenport2016} sample required that, within all available \Kepler data, the star have at least 100 candidate flares of any energy, and 10 flares with energies above the 68\% completeness threshold determined by the automated flare injection tests be recovered. These conservative thresholds potentially eliminate real flare stars with fewer significant flare events from our analysis, as noted by \citet{van-doorsselaere2017}, and may bias our sample towards the more active (younger) end. 
+In total we study the flare rate evolution from 347 stars with rotation periods from \citet{mcquillan2014} that pass the \citet{davenport2016} selection criteria of having sufficient numbers of recovered flare event candidates. We use this conservatively selected, robust sub-sample of 347 stars from the \citet{davenport2016} catalog throughout this paper to explore in detail various approaches to quantifying and comparing flare activity .
+%We also analyze 2Y,YYY stars with rotation periods that were searched for flares, some with marginal levels of flare activity.
+
+%all stars from Amy's sample included. this gives us NNN stars with good flare detections from D16 in the McQ sample, and YYY stars from that sample that were searched for flares but not found significantly flaring. 
+
+
+
+\subsection{Flare Stars Among the Kepler Field}
+
+The thresholds for flare star selection from \citet{davenport2016} can be relaxed to include a larger sample of stars, and to better study the incidence of flare activity in the population of \Kepler field stars. As a demonstration of this, in Figure \ref{fig:fracactive} we show the fraction of flaring stars found in six bins of $g-i$ color as a function of their gyrochronology age. In this example we analyzed 27,127 stars from \citet{mcquillan2014} that had rotation periods between 0.1 and 30 days, and colors redder than $g-i \ge 0.5$ mag. Stars were considered ``active'' here if they had at least 3 flare events above the 68\% completeness threshold determined by the automated flare injection tests from \citet{davenport2016}, and had no requirement for the total number of flare event candidates. This figure emulates the H$\alpha$ activity fraction work typically done for M dwarfs, which shows an increasing lifetime of magnetic activity for stars with decreasing mass \citep[e.g.][]{west2008}. Previous studies such as \citet{kowalski2009} and \citet{hilton2010} have explored the fraction of flaring M dwarfs as a function of their height above the Galactic disk (a dynamical proxy for age), and have found flare activity decreases at earlier ages than H$\alpha$ emission activity. 
+
+The lower mass (redder) stars in Figure \ref{fig:fracactive} exhibit both a higher overall fraction of flare activity at all ages, and a qualitatively longer lifetime of flare activity. Note this sample has not been cleared of contaminants from e.g. subgiants, which have been shown by \citet{davenport2017} to significantly contaminate the rotating G dwarf sample from \citet{mcquillan2014}, and which may lower the overall flaring fraction for bluer stars plotted here.  A more detailed census of stellar rotation periods and ages for all \Kepler and K2 stars \citep[e.g. see][]{van-saders2018}, as well as an exploration on the robustness of identifying flare stars from small numbers of events is needed to fully understand these flare activity lifetimes.
+Still, we believe this is the first demonstration of flare activity lifetimes for G, K, and M field dwarfs together, and warrants further study.
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{figures/age_frac_flare_C}
+\caption{
+Fraction flaring stars as a function of their gyrochronology ages for 27,127 stars in six bins of $g-i$ color. The number of stars within each color bin is noted in the legend.
+Each star has a rotation period determined by \citet{mcquillan2014}, and had artificial flare injection tests run by \citet{davenport2016}. Flaring stars were selected here as having at least 3 flare events above the 68\% recovery completeness threshold in \citet{davenport2016}. We find a trend of increasing total fraction of active flare stars, and an increasing apparent lifetime for flare activity, with decreasing mass (redder stars).
+}
+\label{fig:fracactive}
+\end{figure}
 
 
 
@@ -320,8 +345,7 @@ Note the first part of this equation is simply the definition of the FFD power l
 We explored other parameterizations of this FFD evolution model, including additional cross terms as a function of mass and age, e.g. $a_4 (m \times \log t)$. The Bayesian Information Criterion (BIC) did not yield a significant increase in the quality of the fit to the data given these extra degrees of freedom. Further, we currently have no theoretical basis for using a more complicated model for flare evolution as a function of time or mass. The possible break in the FFD power law for large energy flares, noted by \citet{davenport2016} and in our Figure \ref{fig:ffd1}, was not included in our parameterization of Equation \ref{eqn:model}. Instead we focus on reproducing the single dominant power law FFD relationship, which has been reported to characterize the distribution of flares on the Sun and solar-type stars over more than 10 orders of magnitude in event energy \citep[e.g. Fig. 9 from][]{shibayama2013}. We also did not attempt to include the ``saturated'' activity regime, suggested by \citet{davenport2016} for rapidly rotating stars with Rossby numbers lower than $\sim$0.03, in our FFD model. As \citet{davenport2016} notes, the break does not occur at the same Rossby number as other magnetic activity indicators (typically Ro=0.1) and the support for this break in the \Kepler flare data is currently tenuous. Exploring these additional model parameters is not technically difficult, but additional flare stars from missions like K2 and TESS are needed to determine if they are necessary. 
 
 
-
-Our model fitting in {\tt Python} required an array containing all of the stellar ages in $\log(t/$Myr) and masses (in units of Solar mass), and all flare event energies in $\log(\varepsilon/$ erg), and produced the cumulative flare rate in $\log (\nu/day)$ for each star. Uncertainties in the flare rate were included in our fit, using the Poisson event counting uncertainty approximation from Equation 12 of \citet{gehrels1986}. No errors for the flare energies, or in our mass and age estimates were used in the fit. The model in Equation \ref{eqn:model} was fit to the entire flare star sample using an error weighted least-squares minimization to generate an initial guess.
+Our model fitting in {\tt Python} required an array containing all of the stellar ages in $\log(t/$Myr) and masses (in units of Solar mass), and all flare event energies in $\log(\varepsilon/$ erg), and produced the cumulative flare rate in $\log (\nu/day)$ for each star. Uncertainties in the flare rate were included in our fit, using the Poisson event counting uncertainty approximation from Equation 12 of \citet{gehrels1986}. No errors for the flare energies, or in our mass and age estimates were used in the fit. The model in Equation \ref{eqn:model} was fit to the entire flare star sample using an error weighted least-squares minimization to generate an initial guess for the six free parameters.
 
 The initial fit for Equation \ref{eqn:model} was then refined using the Affine Invariant Markov Chain Monte Carlo (MCMC) ensemble sampler, {\tt emcee} \citep{emcee}. We first ran {\tt emcee}  for a ``burn-in'' phase of 500 steps using 100 walkers seeded around the least-squares solution. The sampler was then run for 100,000 steps to explore parameter space. The MCMC chains were well converged for all 6 free parameters after the 100,000 step run, having an autocorrelation time of $\sim$60 steps for each parameter.
 The final coefficients used for our FFD evolution model were determined using the median of the converged portion of the MCMC chains, and are given in Table \ref{tbl:params}. In Figure \ref{fig:mcmc} we also present the standard {\tt corner} plot \citep{corner} showing the 1- and 2-D posterior  distributions for each free parameter from Equation \ref{eqn:model}.

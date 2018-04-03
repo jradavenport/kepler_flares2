@@ -347,9 +347,8 @@ We explored other parameterizations of this FFD evolution model, including addit
 
 Our model fitting in {\tt Python} required an array containing all of the stellar ages in $\log(t/$Myr) and masses (in units of Solar mass), and all flare event energies in $\log(\varepsilon/$ erg), and produced the cumulative flare rate in $\log (\nu/day)$ for each star. Uncertainties in the flare rate were included in our fit, using the Poisson event counting uncertainty approximation from Equation 12 of \citet{gehrels1986}. No errors for the flare energies, or in our mass and age estimates were used in the fit. The model in Equation \ref{eqn:model} was fit to the entire flare star sample using an error weighted least-squares minimization to generate an initial guess for the six free parameters.
 
-The initial fit for Equation \ref{eqn:model} was then refined using the Affine Invariant Markov Chain Monte Carlo (MCMC) ensemble sampler, {\tt emcee} \citep{emcee}. We first ran {\tt emcee}  for a ``burn-in'' phase of 500 steps using 100 walkers seeded around the least-squares solution. The sampler was then run for 100,000 steps to explore parameter space. The MCMC chains were well converged for all 6 free parameters after the 100,000 step run, having an autocorrelation time of $\sim$60 steps for each parameter.
-The final coefficients used for our FFD evolution model were determined using the median of the converged portion of the MCMC chains, and are given in Table \ref{tbl:params}. In Figure \ref{fig:mcmc} we also present the standard {\tt corner} plot \citep{corner} showing the 1- and 2-D posterior  distributions for each free parameter from Equation \ref{eqn:model}.
-%and are designed for use in other studies exploring stellar flare rates over time.
+The initial fit for Equation \ref{eqn:model} was then refined using the Affine Invariant Markov Chain Monte Carlo (MCMC) ensemble sampler, {\tt emcee} \citep{emcee}. We first ran {\tt emcee}  for a ``burn-in'' phase of 500 steps using 100 walkers, seeded around the initial least-squares solution. The sampler was then run for 100,000 steps to explore parameter space. The MCMC chains were well converged for all 6 free parameters after the 100,000-step run, having an autocorrelation time of $\sim$60 steps for each parameter.
+The final coefficients used for our FFD evolution model were determined using the median of the converged portion of the MCMC chains, and are given in Table \ref{tbl:params}. In Figure \ref{fig:mcmc} we also present the standard {\tt corner} plot \citep{corner}, which shows the 1- and 2-dimensional posterior distributions for each free parameter for Equation \ref{eqn:model} from the MCMC sampler.
 
 
 
@@ -358,24 +357,28 @@ The final coefficients used for our FFD evolution model were determined using th
 \centering
 \includegraphics[width=6.25in]{figures/triangle}
 \caption{
-triangle plot...
+The standard MCMC sampler result {\tt corner} plot, showing the 1- and 2-dimensional posterior distributions for each free parameter in Eqn. \ref{eqn:model}. The density of points and contours correlate with the posterior probability distribution from a 100,000-step run of the {\tt emcee} sampler. Degeneracies are apparent between several parameters, seen here as very narrow distributions in three panels ($a_1, b_1$), ($a_2, b_2$), and ($a_3, b_3$), indicating our chosen model in Eqn. \ref{eqn:model} may have unnecessary complexity.
 }
 \label{fig:mcmc}
 \end{figure*}
 
 
-%% HERE
+The 2-dimensional posterior distributions shown in Figure \ref{fig:mcmc} demonstrate that degeneracies are apparent between several parameters in our model. These can be identified as very narrow distributions in three panels of the panels from Figure \ref{fig:mcmc}: ($a_1, b_1$), ($a_2, b_2$), and ($a_3, b_3$). This can be interpreted as indicating that the model adopted in in Equation \ref{eqn:model} has unnecessary complexity, or that perhaps it could be re-cast into a more fundamental parameter space. As noted above, we have chosen the FFD evolution model in Equation \ref{eqn:model} for ease of implementation, and for lack of a better theoretical basis. The posterior distributions shown in Figure \ref{fig:mcmc} make it clear that other parameterizations should be explored in future studies.
 
-now that we've fit all the FFDs together, we can go back and predict the FFDs in our sample to demonstrate the model is working for specific targets. For example, same targets as before are shown in Figure \ref{fig:ffdmodel}, with model fits. as shown, the model is able to reproduce the FFD for most stars very well.
+
+
+
+In Figure \ref{fig:ffdmodel} we demonstrate our FFD evolution model's ability to reproduce the observed FFDs for several stars. Here we show the combined FFD for the same three flare stars as in Figure \ref{fig:ffd1}, but with the predicted FFD from Equation \ref{eqn:model} overlaid. As discussed previously, we do not attempt to model any break in the FFD slope at high flare energies. The model reproduces the specific flare rates for each stars well, as well as the dominant slopes for the FFDs. These examples represent the ability of our flare evolution model to describe the FFD for a low-mass star at a given mass and age, and we anticipate this model will be helpful for future studies of the flare activity of stars (e.g. for exoplanet host evolution).
+
 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=2.25in]{figures/6117832_ffd_fit}
-\includegraphics[width=2.25in]{figures/7420545_ffd_fit}
-\includegraphics[width=2.25in]{figures/10071383_ffd_fit}
+\includegraphics[width=2.3in]{figures/6117832_ffd_fit}
+\includegraphics[width=2.3in]{figures/7420545_ffd_fit}
+\includegraphics[width=2.3in]{figures/10071383_ffd_fit}
 \caption{
-Flare frequency distributions as shown from Figure \ref{fig:ffd} (black line), but with the resulting flare activity model from Equation \ref{eqn:model} evaluated for each star shown (red line). Note this model was not fit for each star's FFD individually, but instead was fit to our entire sample.}
+Flare frequency distributions as shown from Figure \ref{fig:ffd1} (black line), but with the final flare activity model from Equation \ref{eqn:model} evaluated for each star's mass and age (red line). Note this model was not fit for each star's FFD individually, but instead was fit to our entire sample.}
 \label{fig:ffdmodel}
 \end{figure*}
 
@@ -396,13 +399,12 @@ $b_1=2.01$ & $b_2=-25.15$ &  $b_3=33.99$  \\
 \end{tabular}
 \end{table}
 
-%('>>> median sample parameters (FIT PARAMS!): ', array([ -0.06850749,   0.79409364,  -1.05784294,   2.00554105,       -25.14517454,  33.98654065]))
-%('>>> stddev sample parameters (ERR PARAMS!): ', array([  0.11144766,   0.39644106,   0.36085105,   3.83074746,        13.61202737,  12.31859685]))
-
 %{\bf null detections.... figure those out}
 
+Finally in this section, we briefly note our lack of including null detections in this analysis. While our sample analyzed for the FFD evolution contains 351 stars, there were nearly two orders of magnitude more stars with good colors (and therefore mass estimates) from \citet{davenport2016} and rotation periods from \citet{mcquillan2014}. The flare injection tests from \citet{davenport2016} do also provide conservative estimates of the lowest energy flare that could have been detected in each object's \Kepler light curve with {\tt appaloosa}. We experimented with including these null detections in our model fitting as upper limits, using an observed flare rate of zero, and an uncertainty on the flare rate of 1 event per the total duration of observation ($\sim$4 years for most targets). However, we found two practical challenges that prevented us from using these targets in our model fitting: 1) it was not clear over what energy range in the FFD this upper limit should be considered for each object, and 2) these upper limits dominated the sample, and thus drove the model fitting to systematically under-predict the flare rates observed in our entire ``good'' sample of 351 stars. 
 
 
+%% HERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Exploring the Flare Rate Evolution}
@@ -439,40 +441,6 @@ Our best-fit FFD evolution model evaluated over a grid of masses and ages, showi
 
 
 
-
-
-%%%%%%%%%%%%%%%%%%%
-%\section{Flares versus H$\alpha$ Emission}
-%
-%made this in Columbia - is there an age correlation we can make? (akin to the LX/Lbol vs age plot - is there an Halpha vs age?)
-%
-%if we add clusters, Stephanie has data for Praesepe
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=3.5in]{figures/flare_vs_lhalbol.png}
-%\caption{
-%H$\alpha$ vs flare energy
-%}
-%\label{fig:halpha}
-%\end{figure}
-%
-
-
-
-%%%%%%%%%%%%%%%%%%%
-%\section{Flares versus Galactic Height}
-%Cumulative distribution of flare stars as a function of galactic latitude (or height if I'm willing to make the calculation)
-%Height should be easy enough, just use distance I'm assuming from isochrone fits
-%
-%Similar finding to \citet{kowalski2009} and \citet{hilton2010} for flare stars being more confined to the galactic plane than ``active'' stars (measured from H$\alpha$.) This is consistent with model of flares being sensitive to rotation {\it earlier}, this flare activity dropping sooner in a stars life (lower scale height in Galaxy), and thus a break from saturation at smaller Rossby Number
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Kinematic ages?}
-%use Gaia - good?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}

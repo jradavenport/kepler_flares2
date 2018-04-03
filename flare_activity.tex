@@ -347,8 +347,25 @@ We explored other parameterizations of this FFD evolution model, including addit
 
 Our model fitting in {\tt Python} required an array containing all of the stellar ages in $\log(t/$Myr) and masses (in units of Solar mass), and all flare event energies in $\log(\varepsilon/$ erg), and produced the cumulative flare rate in $\log (\nu/day)$ for each star. Uncertainties in the flare rate were included in our fit, using the Poisson event counting uncertainty approximation from Equation 12 of \citet{gehrels1986}. No errors for the flare energies, or in our mass and age estimates were used in the fit. The model in Equation \ref{eqn:model} was fit to the entire flare star sample using an error weighted least-squares minimization to generate an initial guess for the six free parameters.
 
+
+\begin{table}
+\caption{
+Median parameters for the FFD evolution model described in Equation \ref{eqn:model} found from our MCMC exploration.
+\label{tbl:params}
+}
+\footnotesize
+\centering
+\begin{tabular}{llll}
+\tableline
+$a_1=-0.07$  &  $a_2=0.79$ &    $a_3=-1.06$ \\
+$b_1=2.01$ & $b_2=-25.15$ &  $b_3=33.99$  \\
+\end{tabular}
+\end{table}
+
+
 The initial fit for Equation \ref{eqn:model} was then refined using the Affine Invariant Markov Chain Monte Carlo (MCMC) ensemble sampler, {\tt emcee} \citep{emcee}. We first ran {\tt emcee}  for a ``burn-in'' phase of 500 steps using 100 walkers, seeded around the initial least-squares solution. The sampler was then run for 100,000 steps to explore parameter space. The MCMC chains were well converged for all 6 free parameters after the 100,000-step run, having an autocorrelation time of $\sim$60 steps for each parameter.
 The final coefficients used for our FFD evolution model were determined using the median of the converged portion of the MCMC chains, and are given in Table \ref{tbl:params}. In Figure \ref{fig:mcmc} we also present the standard {\tt corner} plot \citep{corner}, which shows the 1- and 2-dimensional posterior distributions for each free parameter for Equation \ref{eqn:model} from the MCMC sampler.
+
 
 
 
@@ -367,8 +384,7 @@ The 2-dimensional posterior distributions shown in Figure \ref{fig:mcmc} demonst
 
 
 
-
-In Figure \ref{fig:ffdmodel} we demonstrate our FFD evolution model's ability to reproduce the observed FFDs for several stars. Here we show the combined FFD for the same three flare stars as in Figure \ref{fig:ffd1}, but with the predicted FFD from Equation \ref{eqn:model} overlaid. As discussed previously, we do not attempt to model any break in the FFD slope at high flare energies. The model reproduces the specific flare rates for each stars well, as well as the dominant slopes for the FFDs. These examples represent the ability of our flare evolution model to describe the FFD for a low-mass star at a given mass and age, and we anticipate this model will be helpful for future studies of the flare activity of stars (e.g. for exoplanet host evolution).
+In Figure \ref{fig:ffdmodel} we demonstrate our FFD evolution model's ability to reproduce the observed FFDs for several stars. Here we show the combined FFD for the same three flare stars as in Figure \ref{fig:ffd1}, but with the predicted FFD from Equation \ref{eqn:model} overlaid. As discussed previously, we do not attempt to model any break in the FFD slope at high flare energies. The model reproduces the specific flare rates for each stars well, as well as the dominant slopes for the FFDs. These examples represent the ability of our flare evolution model to describe the FFD for a low-mass star at a given mass and age, and we anticipate this model will be helpful for future studies of the flare activity, such as exoplanet host evolution, or updating the predicted flare yields from surveys like LSST \citep{najita2016}.
 
 
 
@@ -385,32 +401,19 @@ Flare frequency distributions as shown from Figure \ref{fig:ffd1} (black line), 
 
 
 
-\begin{table}
-\caption{
-Median parameters for the FFD evolution model described in Equation \ref{eqn:model} found from our MCMC exploration.
-\label{tbl:params}
-}
-\footnotesize
-\centering
-\begin{tabular}{llll}
-\tableline
-$a_1=-0.07$  &  $a_2=0.79$ &    $a_3=-1.06$ \\
-$b_1=2.01$ & $b_2=-25.15$ &  $b_3=33.99$  \\
-\end{tabular}
-\end{table}
-
-%{\bf null detections.... figure those out}
-
 Finally in this section, we briefly note our lack of including null detections in this analysis. While our sample analyzed for the FFD evolution contains 351 stars, there were nearly two orders of magnitude more stars with good colors (and therefore mass estimates) from \citet{davenport2016} and rotation periods from \citet{mcquillan2014}. The flare injection tests from \citet{davenport2016} do also provide conservative estimates of the lowest energy flare that could have been detected in each object's \Kepler light curve with {\tt appaloosa}. We experimented with including these null detections in our model fitting as upper limits, using an observed flare rate of zero, and an uncertainty on the flare rate of 1 event per the total duration of observation ($\sim$4 years for most targets). However, we found two practical challenges that prevented us from using these targets in our model fitting: 1) it was not clear over what energy range in the FFD this upper limit should be considered for each object, and 2) these upper limits dominated the sample, and thus drove the model fitting to systematically under-predict the flare rates observed in our entire ``good'' sample of 351 stars. 
 
 
-%% HERE
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Exploring the Flare Rate Evolution}
 \label{sec:model}
 
-test the model out in detail. diff masses, diff ages....
+
+Using our FFD evolution model trained on a sparse sample of field stars with varying masses and ages, we can explore how a single star evolves over its lifetime. In Figure \ref{fig:model} we show the FFD for a theoretical 0.5 M$_\odot$ star (approximately an M0 dwarf), and for a 1 M$_\odot$ star, both evaluated at four logarithmically spaced ages from 10 Myr to 1 Gyr. The solar-mass star has a specific flare rate that decreases more rapidly than the model M dwarf. A very small change in the FFD slope is seen for the M dwarf, with the FFD getting steeper (fewer large flares) over time. However, given the small number of M dwarfs in our sample with old ages, the reliability of this change in slope is questionable. We find the FFD slope is effectively constant for stars at all ages.
+
 
 \begin{figure}[!t]
 \centering
@@ -424,7 +427,13 @@ Our best-fit flare evolution model showing the predicted FFD evaluated at four a
 
 
 
-even make pretty grids, which capture our expectation that M dwarfs flare a lot and for a long time.
+Extending the FFD for a theoretical solar-mass star to the age of the Sun (here assumed to be 4.6 Gyr), we find our model over-predicts the rate of superflares determined for ``average Sun-like stars'' in \Kepler by \citet{shibayama2013}. Instead, our model closely fits their ``most active Sun-like'' sample. We believe this is due to our sample having insufficient numbers of slowly rotating G dwarfs to accurately predict the behavior of older stars. We also note a potential Malmquist-like bias in our flare rate determination exists due the possible existence of activity cycles. As \citet{shibayama2013} and \citet{clarke2018} note, flare activity might vary by an order of magnitude on these stars over their activity cycles \citep[see also][]{veronig2002}, and so our sample may preferentially include stars near their highest activity states.
+
+
+
+Our FFD evolution model can also be used to predict {\it other} flare activity metrics described in this paper. For example, in Figure \ref{fig:grid} we compute $R_{35}$, the specific flare rate at an energy of $\log \varepsilon = 35$ erg, and with our metric of $R_{1s}$ developed in \S\ref{sec:rate} that scales with the quiescent luminosity of the star. The specific flare rate here is determined by evaluating the FFD at a given energy over a dense grid of ages and masses, allowing us to draw this phenomenological surface of flare activity as a function of mass and age. As noted in \S\ref{sec:rate}, $R_{1s}$ broadly shows the more intuitive behavior that low-mass stars have flare activity that declines more slowly with age. 
+
+
 \begin{figure}[!t]
 \centering
 \includegraphics[width=3.5in]{figures/eqnFFD_grid35}
@@ -437,14 +446,15 @@ Our best-fit FFD evolution model evaluated over a grid of masses and ages, showi
 
 
 
-
-
+Computing the fractional flare luminosity, $L_{fl}/L_{Kp}$, using our FFD evolution model is more subtle due to the considerations described in \S\ref{sec:fracL}. For example, the energy range of flare events to model the FFD over must be chosen at every age and mass. To match observations it is important to pick an energy range of flares that scales with each star's quiescent luminosity. The fractional flare luminosity was computed using a preliminary version of our FFD evolution model for \citet{clarke2018}, which examined the change in $L_{fl}/L_{Kp}$ between stars of varying mass ratios over a 1 Gyr timespan. This was computed at each age by integrating the FFD over six orders of magnitude in flare event energy, a larger dynamic range of events than typically observed for stars in \Kepler, even very active stars like GJ 1243 \citep{hawley2014}. However, the same range of energies was used for both stars, regardless of the mass ratio considered. \citet{clarke2018} found that the ratio of $L_{fl}/L_{Kp}$ between stars was roughly constant over time (up to 1 Gyr), which is again likely due to the model FFD slope remaining effectively the same at all ages for a given star.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 \label{sec:discussion}
+%% HERE
+
 
 this is the first time a direct connection between stellar flare energy and other traditional magnetic activity indicators has been determined, tying the occurrence of flares on small size scales to the total chromospheric activity of the star.
 

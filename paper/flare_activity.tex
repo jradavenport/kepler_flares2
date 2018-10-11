@@ -104,12 +104,15 @@ The \citet{davenport2016} sample of $\sim$4,000 candidate flare stars contains s
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=2.25in]{figures/fig1a}
-\includegraphics[width=2.25in]{figures/fig1b}
-\includegraphics[width=2.25in]{figures/fig1c}\\
-\includegraphics[width=2.25in]{figures/6117832_ffd}
-\includegraphics[width=2.25in]{figures/7420545_ffd}
-\includegraphics[width=2.25in]{figures/10071383_ffd}
+\includegraphics[width=2.25in]{fig1a}
+\includegraphics[width=2.25in]{fig1b}
+\includegraphics[width=2.25in]{fig1c}\\
+\includegraphics[width=2.25in]{fig1d}
+\includegraphics[width=2.25in]{fig1e}
+\includegraphics[width=2.25in]{fig1f}
+%\includegraphics[width=2.25in]{6117832_ffd}
+%\includegraphics[width=2.25in]{7420545_ffd}
+%\includegraphics[width=2.25in]{10071383_ffd}
 \caption{
 Three examples of flare stars from the \citet{davenport2016} sample. top row: sample light curves. Bottom row: cumulative flare frequency distributions (FFDs) from the{\tt appaloosa} flare finding analysis of \citet{davenport2016} for the same three stars. The FFD from each short cadence (blue lines) and long cadence (red lines) dataset is included, as well as the mean FFD (black) with Poisson uncertainties shown. Each star's mean FFD is fit with a power law (heavy navy line), whose slope and intercept in log--log space ($\alpha$ and $\beta$) are noted.
 }
@@ -131,7 +134,8 @@ In total we study the flare rate evolution from 347 stars with rotation periods 
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=3.5in]{figures/age_frac_flare_C}
+%\includegraphics[width=3.5in]{figures/age_frac_flare_C}
+\includegraphics[width=3.5in]{fig2}
 \caption{
 Fraction flaring stars as a function of their gyrochronology ages for 27,127 stars in six bins of $g-i$ color. The number of stars within each color bin is noted in the legend.
 Each star has a rotation period determined by \citet{mcquillan2014}, and had artificial flare injection tests run by \citet{davenport2016}. Flaring stars were selected here as having at least 3 flare events above the 68\% recovery completeness threshold in \citet{davenport2016}. We find a trend of increasing total fraction of active flare stars, and an increasing apparent lifetime for flare activity, with decreasing mass (redder stars).
@@ -184,7 +188,8 @@ Thirdly, the light curve data does not need to be flux calibrated, or have accur
 % made in a standalone ipython notebook in this repo
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/flare_psi}
+%\includegraphics[width=3.5in]{figures/flare_psi}
+\includegraphics[width=3.5in]{fig3}
 \caption{
 Flare $\Psi$, the correction factor (black line) that can be used to convert the observed fractional flare energy $L_{fl}/L_{Kp}$ in to the metric for comparing between stars of different masses, $L_{fl}/L_{bol}$. This $\Psi$ was computed using the bolometric and \Kepler absolute magnitudes from a 600Myr PARSEC isochrone \citep{bressan2012}. Here we show this correction factor versus $g-i$ color as a proxy for mass or spectral type \citep[e.g. see][]{covey2007,davenport2014}. A polynomial fit to the $\Psi$ factor is also shown (blue line), and is described in the text below.
 }
@@ -207,8 +212,10 @@ Note that the $\Psi$ parameter assumes a ``gray'' spectral response for the flar
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/Rossby_lfllkp_color}
-\includegraphics[width=3.5in]{figures/Rossby_lfllbol_color}
+%\includegraphics[width=3.5in]{figures/Rossby_lfllkp_color}
+%\includegraphics[width=3.5in]{figures/Rossby_lfllbol_color}
+\includegraphics[width=3.5in]{fig4a}
+\includegraphics[width=3.5in]{fig4b}
 \caption{
 Rossby number vs flare energy for sample from Paper 1.
 Top: The original $L_{fl}/L_{Kp}$ metric, as shown in \citet{davenport2016} versus Rossby number, with points colored by the stellar masses estimated by \citet{davenport2016} .
@@ -243,8 +250,10 @@ This specific flare rate metric is also appealing due to its easily understood u
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/Rossby_rate_color}
-\includegraphics[width=3.5in]{figures/color_rot_R35}
+%\includegraphics[width=3.5in]{figures/Rossby_rate_color}
+%\includegraphics[width=3.5in]{figures/color_rot_R35}
+\includegraphics[width=3.5in]{fig5a}
+\includegraphics[width=3.5in]{fig5b}
 \caption{
 Specific flare rate ($R_{35}$), evaluated at an energy of log E = 35 erg as a function of the stellar mass and Rossby number (top), and the observed stellar rotation and color (bottom). The sample is the same as in Figure \ref{fig:rossby1}.
 }
@@ -265,7 +274,8 @@ To overcome this, we can correct the specific flare rate for the difference in q
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=3.5in]{figures/color_rot_R1s}
+%\includegraphics[width=3.5in]{figures/color_rot_R1s}
+\includegraphics[width=3.5in]{fig6}
 \caption{
 The Specific flare rate ($R_{1s}$), evaluated at an energy that is equal to an equivalent duration of 1 second
 }
@@ -284,12 +294,18 @@ The Specific flare rate ($R_{1s}$), evaluated at an energy that is equal to an e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure*}[!ht]
 \centering
-\includegraphics[width=2.25in]{figures/mean_ffd0}
-\includegraphics[width=2.25in]{figures/mean_ffd1}
-\includegraphics[width=2.25in]{figures/mean_ffd2}\\
-\includegraphics[width=2.25in]{figures/mean_ffd3}
-\includegraphics[width=2.25in]{figures/mean_ffd4}
-\includegraphics[width=2.25in]{figures/mean_ffd5}
+%\includegraphics[width=2.25in]{figures/mean_ffd0}
+%\includegraphics[width=2.25in]{figures/mean_ffd1}
+%\includegraphics[width=2.25in]{figures/mean_ffd2}\\
+%\includegraphics[width=2.25in]{figures/mean_ffd3}
+%\includegraphics[width=2.25in]{figures/mean_ffd4}
+%\includegraphics[width=2.25in]{figures/mean_ffd5}
+\includegraphics[width=2.25in]{fig7a}
+\includegraphics[width=2.25in]{fig7b}
+\includegraphics[width=2.25in]{fig7c}\\
+\includegraphics[width=2.25in]{fig7d}
+\includegraphics[width=2.25in]{fig7e}
+\includegraphics[width=2.25in]{fig7f}
 \caption{
 Average FFD, combining all available quarters of \Kepler data, for stars in the 6 $g-i$ color bins defined in \citet{davenport2016}. Each track is colored as a function of the measured rotation period from \citet{mcquillan2014}. A clear and coherent decrease in the total flare rates is observed as stars slow down (age) within each panel.
 }
@@ -378,7 +394,8 @@ The final coefficients used for our FFD evolution model were determined using th
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=6.25in]{figures/triangle}
+%\includegraphics[width=6.25in]{figures/triangle}
+\includegraphics[width=6.25in]{fig8}
 \caption{
 The standard MCMC sampler result {\tt corner} plot, showing the 1- and 2-dimensional posterior distributions for each free parameter in Eqn. \ref{eqn:model}. The density of points and contours correlate with the posterior probability distribution from a 100,000-step run of the {\tt emcee} sampler. Degeneracies are apparent between several parameters, seen here as very narrow distributions in three panels ($a_1, b_1$), ($a_2, b_2$), and ($a_3, b_3$), indicating our chosen model in Eqn. \ref{eqn:model} may have unnecessary complexity.
 }
@@ -391,9 +408,12 @@ The 2-dimensional posterior distributions shown in Figure \ref{fig:mcmc} demonst
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=2.3in]{figures/6117832_ffd_fit}
-\includegraphics[width=2.3in]{figures/7420545_ffd_fit}
-\includegraphics[width=2.3in]{figures/10071383_ffd_fit}
+%\includegraphics[width=2.3in]{figures/6117832_ffd_fit}
+%\includegraphics[width=2.3in]{figures/7420545_ffd_fit}
+%\includegraphics[width=2.3in]{figures/10071383_ffd_fit}
+\includegraphics[width=2.3in]{fig9a}
+\includegraphics[width=2.3in]{fig9b}
+\includegraphics[width=2.3in]{fig9c}
 \caption{
 Flare frequency distributions as shown from Figure \ref{fig:ffd1} (black line), but with the final flare activity model from Equation \ref{eqn:model} evaluated for each star's mass and age (red line). Note this model was not fit for each star's FFD individually, but instead was fit to our entire sample of 347 stars.}
 \label{fig:ffdmodel}
@@ -419,8 +439,10 @@ Using our FFD evolution model generated from a sparse sample of field stars with
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/eqnFFD_mass1}
-\includegraphics[width=3.5in]{figures/eqnFFD_mass2}
+%\includegraphics[width=3.5in]{figures/eqnFFD_mass1}
+%\includegraphics[width=3.5in]{figures/eqnFFD_mass2}
+\includegraphics[width=3.5in]{fig10a}
+\includegraphics[width=3.5in]{fig10b}
 \caption{
 Our best-fit flare evolution model showing the predicted FFD evaluated at four age bins for a $0.5 M_\odot$ (top) and $1.0 M_\odot$ star (bottom). While the change in FFD slopes as a function of age is negligible, the difference as a function of mass is significant. Note: These FFDs are drawn at the same energy ranges for ease of comparison, but do not correspond to the specific flare energies detected at these masses.
 }
@@ -442,8 +464,10 @@ Encouragingly, the $R_{1s}$ surface shown in Figure \ref{fig:grid} demonstrates 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/eqnFFD_grid35}
-\includegraphics[width=3.5in]{figures/eqnFFD_grid_R1s}
+%\includegraphics[width=3.5in]{figures/eqnFFD_grid35}
+%\includegraphics[width=3.5in]{figures/eqnFFD_grid_R1s}
+\includegraphics[width=3.5in]{fig11a}
+\includegraphics[width=3.5in]{fig11b}
 \caption{
 Our best-fit FFD evolution model evaluated over a grid of masses and ages, showing the cumulative flare rate $R_{35}$ for a fixed energy of $10^35$ erg (top), and at an equivalent duration of 1 second, i.e. $R_{1s} = $ 1 sec $\times L_{quies}$ (bottom). The latter clearly shows that low-mass stars produce more flares relative to their quiescent luminosity, while all stars show a decrease in their specific flare rate over time.
 }

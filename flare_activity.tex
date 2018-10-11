@@ -18,14 +18,14 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%
-\title{The Evolution of Flare Activity with Stellar Age} % from \Kepler
+\title{The Evolution of Flare Activity with Stellar Age}
 
 \shorttitle{Evolution of Flare Activity}
 \shortauthors{Davenport et al.}
 
 
 \correspondingauthor{James. R. A. Davenport}
-\email{James.Davenport@wwu.edu}
+\email{jrad@uw.edu}
 
 \author{James. R. A. Davenport}
 \altaffiliation{NSF Astronomy and Astrophysics Postdoctoral Fellow}
@@ -309,13 +309,9 @@ Figure \ref{fig:meanffd} shows the FFDs for our sample of 347 stars with measure
 Each line shows the mean FFD for a single star using all available quarters of \Kepler data, corresponding to the average FFDs shown as heavy black lines in the bottom panels of Figure \ref{fig:ffd1}.
 Each FFD line is colored by the observed rotation period reported by \citet{mcquillan2014}, with  rotation periods increasing from red to blue. Thus the panels of Figure \ref{fig:meanffd} represent slices in mass of the four dimensional data space we are interested in (stellar mass, age, flare event energy, flare frequency). 
 
-%The flare energy range observed within each panel of Figure \ref{fig:meanffd} varies as a function of color bin, as expected from \S\ref{sec:rate}. 
 As presented in Section \S\ref{sec:rate}, the range of flare energies we can detect in each panel of Figure \ref{fig:meanffd} is affected by observational and astrophysical biases and limits.
 The low-energy event cutoff for each star is determined by the automated flare injection and recovery tests described by \citet{davenport2016}. A bias is also seen where rapid rotators have slightly higher energy cutoffs due to increased starspot amplitudes that were not perfectly modeled out by {\tt appaloosa}, which made flare recovery more difficult for the iterative algorithm of \citet{davenport2016}.
 
-
-%% dropped paragraph for now...
-%Another potential source of error in these FFDs come from the quiescent luminosities used to transform from the observed relative flare event ``equivalent durations'' into actual energies. \citet{davenport2016} used the observed $g-i$ colors and apparent $g$-band magnitude matched to a stellar isochrone to determine the distances and luminosities for each source. These estimates do not preclude binary stars or subgiants from contaminating our list of rotating stars. For example, \citet{davenport2017} demonstrated using Gaia DR1 that a significant fraction of the nearest G dwarfs in the \citet{mcquillan2014} sample appeared to actually be subgiant contaminants. However, Gaia DR1 did not provide accurate distances to the entire Kepler sample, and so refining these distance estimates will have to wait for Gaia DR2. Regardless, we believe this energy zeropoint uncertainty will not significantly affect our analysis here, as we have limited ourselves to considering only the most flare-active stars from the \citet{davenport2016} sample, and because each bin in Figure \ref{fig:meanffd} includes sources from a small range in stellar color.
 
 
 Figure \ref{fig:meanffd} shows, in every color bin, a decrease in the observed flare frequency as a function of rotation period. This monotonic decrease in flare rate as stars lose angular momentum is the evolution we wish to model. Qualitatively, the flare activity decreases more dramatically for bluer stars, consistent with results from e.g. Figure \ref{fig:R1s}, and our expectations from other measures of stellar magnetic activity over time \citep[e.g.][]{shkolnik2014,nunez2017}. As \citet{davenport2016} highlighted for one flaring G dwarf, a ``break'' in the FFD power law is apparent at the highest flare event energies. This break energy also seems to scale with the energy range of events observed within each $g-i$ color bin (i.e. lower-mass stars have a lower break energy). Though we do not fully explore this feature here, we emphasize that it may represent an important limit on the maximum energy budget of stellar active regions, or their formation timescales as a function of the total stellar magnetic field strength.
@@ -458,7 +454,6 @@ Our best-fit FFD evolution model evaluated over a grid of masses and ages, showi
 
 Using our model to compute the fractional flare luminosity, $L_{fl}/L_{Kp}$, requires more care due to the considerations described in \S\ref{sec:fracL}. For example, the energy range of flare events that the model FFD is integrated over must be chosen at every age and mass. To match observations it is important to pick an energy range of flares that scales with each star's quiescent luminosity. The fractional flare luminosity was computed using a preliminary version of our FFD evolution model for \citet{clarke2018}, which examined the change in $L_{fl}/L_{Kp}$ between stars of varying mass ratios over a 1 Gyr timespan. This was computed at each age by integrating the FFD over six orders of magnitude in flare event energy, a larger dynamic range of events than typically observed for stars in \Kepler, even very active stars like GJ 1243 \citep{hawley2014}. However, the same range of energies was used for both stars, regardless of the mass ratio considered. \citet{clarke2018} found that the ratio of $L_{fl}/L_{Kp}$ between stars was roughly constant over time (up to 1 Gyr), which is again due to the model FFD slope remaining effectively the same at all ages for a given star.
 
-%% EDITING HERE
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -491,7 +486,336 @@ Kepler was competitively selected as the tenth Discovery mission. Funding for th
 
 
 
-\bibliography{/Users/james/Dropbox/references}
+% \bibliography{/Users/james/Dropbox/references}
+
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+\providecommand{\dodoi}[1]{doi:~\href{http://doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\doeprint}[1]{\href{http://ascl.net/#1}{\nolinkurl{http://ascl.net/#1}}}
+\providecommand{\doarXiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{https://arxiv.org/abs/#1}}}
+
+\bibitem[{{Ambartsumian} \& {Mirzoian}(1975)}]{ambartsumian1975}
+{Ambartsumian}, V.~A., \& {Mirzoian}, L.~V. 1975, in IAU Symposium, Vol.~67,
+  Variable Stars and Stellar Evolution, ed. V.~E. {Sherwood} \& L.~{Plaut},
+  3--14
+
+\bibitem[{{Angus} {et~al.}(2015){Angus}, {Aigrain}, {Foreman-Mackey}, \&
+  {McQuillan}}]{angus2015}
+{Angus}, R., {Aigrain}, S., {Foreman-Mackey}, D., \& {McQuillan}, A. 2015,
+  \mnras, 450, 1787, \dodoi{10.1093/mnras/stv423}
+
+\bibitem[{{Balona}(2012)}]{balona2012}
+{Balona}, L.~A. 2012, \mnras, 423, 3420,
+  \dodoi{10.1111/j.1365-2966.2012.21135.x}
+
+\bibitem[{{Borucki} {et~al.}(2010){Borucki}, {Koch}, {Basri}, {Batalha},
+  {Brown}, {Caldwell}, {Caldwell}, {Christensen-Dalsgaard}, {Cochran},
+  {DeVore}, {Dunham}, {Dupree}, {Gautier}, {Geary}, {Gilliland}, {Gould},
+  {Howell}, {Jenkins}, {Kondo}, {Latham}, {Marcy}, {Meibom}, {Kjeldsen},
+  {Lissauer}, {Monet}, {Morrison}, {Sasselov}, {Tarter}, {Boss}, {Brownlee},
+  {Owen}, {Buzasi}, {Charbonneau}, {Doyle}, {Fortney}, {Ford}, {Holman},
+  {Seager}, {Steffen}, {Welsh}, {Rowe}, {Anderson}, {Buchhave}, {Ciardi},
+  {Walkowicz}, {Sherry}, {Horch}, {Isaacson}, {Everett}, {Fischer}, {Torres},
+  {Johnson}, {Endl}, {MacQueen}, {Bryson}, {Dotson}, {Haas}, {Kolodziejczak},
+  {Van Cleve}, {Chandrasekaran}, {Twicken}, {Quintana}, {Clarke}, {Allen},
+  {Li}, {Wu}, {Tenenbaum}, {Verner}, {Bruhweiler}, {Barnes}, \&
+  {Prsa}}]{borucki2010}
+{Borucki}, W.~J., {Koch}, D., {Basri}, G., {et~al.} 2010, Science, 327, 977,
+  \dodoi{10.1126/science.1185402}
+
+\bibitem[{{Bressan} {et~al.}(2012){Bressan}, {Marigo}, {Girardi}, {Salasnich},
+  {Dal Cero}, {Rubele}, \& {Nanni}}]{bressan2012}
+{Bressan}, A., {Marigo}, P., {Girardi}, L., {et~al.} 2012, \mnras, 427, 127,
+  \dodoi{10.1111/j.1365-2966.2012.21948.x}
+
+\bibitem[{{Candelaresi} {et~al.}(2014){Candelaresi}, {Hillier}, {Maehara},
+  {Brandenburg}, \& {Shibata}}]{candelaresi2014}
+{Candelaresi}, S., {Hillier}, A., {Maehara}, H., {Brandenburg}, A., \&
+  {Shibata}, K. 2014, ArXiv e-prints 1405.1453.
+\newblock \doarXiv{1405.1453}
+
+\bibitem[{{Clarke} {et~al.}(2018){Clarke}, {Davenport}, {Covey}, \&
+  {Baranec}}]{clarke2018}
+{Clarke}, R.~W., {Davenport}, J.~R.~A., {Covey}, K.~R., \& {Baranec}, C. 2018,
+  \apj, 853, 59, \dodoi{10.3847/1538-4357/aaa0d3}
+
+\bibitem[{{Covey} {et~al.}(2007){Covey}, {Ivezi{\'c}}, {Schlegel},
+  {Finkbeiner}, {Padmanabhan}, {Lupton}, {Ag{\"u}eros}, {Bochanski}, {Hawley},
+  {West}, {Seth}, {Kimball}, {Gogarten}, {Claire}, {Haggard}, {Kaib},
+  {Schneider}, \& {Sesar}}]{covey2007}
+{Covey}, K.~R., {Ivezi{\'c}}, {\v Z}., {Schlegel}, D., {et~al.} 2007, \aj, 134,
+  2398, \dodoi{10.1086/522052}
+
+\bibitem[{{Davenport}(2016{\natexlab{a}})}]{davenport2016}
+{Davenport}, J.~R.~A. 2016{\natexlab{a}}, \apj, 829, 23,
+  \dodoi{10.3847/0004-637X/829/1/23}
+
+\bibitem[{{Davenport}(2016{\natexlab{b}})}]{davenport2016b}
+---. 2016{\natexlab{b}}, ArXiv e-prints.
+\newblock \doarXiv{1610.08563}
+
+\bibitem[{{Davenport}(2017{\natexlab{a}})}]{davenport2017a}
+---. 2017{\natexlab{a}}, Research Notes of the American Astronomical Society,
+  1, 2, \dodoi{10.3847/2515-5172/aa95c3}
+
+\bibitem[{{Davenport}(2017{\natexlab{b}})}]{davenport2017}
+---. 2017{\natexlab{b}}, \apj, 835, 16, \dodoi{10.3847/1538-4357/835/1/16}
+
+\bibitem[{{Davenport} {et~al.}(2014{\natexlab{a}}){Davenport}, {Hawley},
+  {Hebb}, {Wisniewski}, {Kowalski}, {Johnson}, {Malatesta}, {Peraza}, {Keil},
+  {Silverberg}, {Jansen}, {Scheffler}, {Berdis}, {Larsen}, \&
+  {Hilton}}]{davenport2014b}
+{Davenport}, J.~R.~A., {Hawley}, S.~L., {Hebb}, L., {et~al.}
+  2014{\natexlab{a}}, \apj, 797, 122, \dodoi{10.1088/0004-637X/797/2/122}
+
+\bibitem[{{Davenport} {et~al.}(2014{\natexlab{b}}){Davenport}, {Ivezi{\'c}},
+  {Becker}, {Ruan}, {Hunt-Walker}, {Covey}, {Lewis}, {AlSayyad}, \&
+  {Anderson}}]{davenport2014}
+{Davenport}, J.~R.~A., {Ivezi{\'c}}, {\v Z}., {Becker}, A.~C., {et~al.}
+  2014{\natexlab{b}}, \mnras, 440, 3430, \dodoi{10.1093/mnras/stu466}
+
+\bibitem[{{Douglas} {et~al.}(2016){Douglas}, {Ag{\"u}eros}, {Covey}, {Cargile},
+  {Barclay}, {Cody}, {Howell}, \& {Kopytova}}]{douglas2016}
+{Douglas}, S.~T., {Ag{\"u}eros}, M.~A., {Covey}, K.~R., {et~al.} 2016, \apj,
+  822, 47, \dodoi{10.3847/0004-637X/822/1/47}
+
+\bibitem[{{Douglas} {et~al.}(2014){Douglas}, {Ag{\"u}eros}, {Covey}, {Bowsher},
+  {Bochanski}, {Cargile}, {Kraus}, {Law}, {Lemonias}, {Arce}, {Fierroz}, \&
+  {Kundert}}]{douglas2014}
+---. 2014, \apj, 795, 161, \dodoi{10.1088/0004-637X/795/2/161}
+
+\bibitem[{{Feigelson}(2001)}]{feigelson2001}
+{Feigelson}, E.~D. 2001, in Astronomical Society of the Pacific Conference
+  Series, Vol. 248, Magnetic Fields Across the Hertzsprung-Russell Diagram, ed.
+  G.~{Mathys}, S.~K. {Solanki}, \& D.~T. {Wickramasinghe}, 495
+
+\bibitem[{Foreman-Mackey(2016)}]{corner}
+Foreman-Mackey, D. 2016, The Journal of Open Source Software, 24,
+  \dodoi{10.21105/joss.00024}
+
+\bibitem[{{Foreman-Mackey} {et~al.}(2013){Foreman-Mackey}, {Hogg}, {Lang}, \&
+  {Goodman}}]{emcee}
+{Foreman-Mackey}, D., {Hogg}, D.~W., {Lang}, D., \& {Goodman}, J. 2013, \pasp,
+  125, 306, \dodoi{10.1086/670067}
+
+\bibitem[{{Gehrels}(1986)}]{gehrels1986}
+{Gehrels}, N. 1986, \apj, 303, 336, \dodoi{10.1086/164079}
+
+\bibitem[{{Gizis} {et~al.}(2013){Gizis}, {Burgasser}, {Berger}, {Williams},
+  {Vrba}, {Cruz}, \& {Metchev}}]{gizis2013}
+{Gizis}, J.~E., {Burgasser}, A.~J., {Berger}, E., {et~al.} 2013, \apj, 779,
+  172, \dodoi{10.1088/0004-637X/779/2/172}
+
+\bibitem[{{Hansteen} {et~al.}(2017){Hansteen}, {Archontis}, {Pereira},
+  {Carlsson}, {Rouppe van der Voort}, \& {Leenaarts}}]{hansteen2017}
+{Hansteen}, V.~H., {Archontis}, V., {Pereira}, T.~M.~D., {et~al.} 2017, \apj,
+  839, 22, \dodoi{10.3847/1538-4357/aa6844}
+
+\bibitem[{{Haro} \& {Chavira}(1966)}]{haro1966}
+{Haro}, G., \& {Chavira}, E. 1966, Vistas in Astronomy, 8, 89,
+  \dodoi{10.1016/0083-6656(66)90024-9}
+
+\bibitem[{{Hawley} {et~al.}(2014){Hawley}, {Davenport}, {Kowalski},
+  {Wisniewski}, {Hebb}, {Deitrick}, \& {Hilton}}]{hawley2014}
+{Hawley}, S.~L., {Davenport}, J.~R.~A., {Kowalski}, A.~F., {et~al.} 2014, \apj,
+  797, 121, \dodoi{10.1088/0004-637X/797/2/121}
+
+\bibitem[{{Hawley} \& {Pettersen}(1991)}]{slhadleo}
+{Hawley}, S.~L., \& {Pettersen}, B.~R. 1991, \apj, 378, 725,
+  \dodoi{10.1086/170474}
+
+\bibitem[{{Hilton} {et~al.}(2010){Hilton}, {West}, {Hawley}, \&
+  {Kowalski}}]{hilton2010}
+{Hilton}, E.~J., {West}, A.~A., {Hawley}, S.~L., \& {Kowalski}, A.~F. 2010,
+  \aj, 140, 1402, \dodoi{10.1088/0004-6256/140/5/1402}
+
+\bibitem[{{Hunt-Walker} {et~al.}(2012){Hunt-Walker}, {Hilton}, {Kowalski},
+  {Hawley}, \& {Matthews}}]{huntwalker2012}
+{Hunt-Walker}, N.~M., {Hilton}, E.~J., {Kowalski}, A.~F., {Hawley}, S.~L., \&
+  {Matthews}, J.~M. 2012, \pasp, 124, 545, \dodoi{10.1086/666495}
+
+\bibitem[{{Kipping} {et~al.}(2017){Kipping}, {Cameron}, {Hartman}, {Davenport},
+  {Matthews}, {Sasselov}, {Rowe}, {Siverd}, {Chen}, {Sandford}, {Bakos},
+  {Jord{\'a}n}, {Bayliss}, {Henning}, {Mancini}, {Penev}, {Csubry}, {Bhatti},
+  {Da Silva Bento}, {Guenther}, {Kuschnig}, {Moffat}, {Rucinski}, \&
+  {Weiss}}]{kipping2017}
+{Kipping}, D.~M., {Cameron}, C., {Hartman}, J.~D., {et~al.} 2017, \aj, 153, 93,
+  \dodoi{10.3847/1538-3881/153/3/93}
+
+\bibitem[{{Kowalski} {et~al.}(2009){Kowalski}, {Hawley}, {Hilton}, {Becker},
+  {West}, {Bochanski}, \& {Sesar}}]{kowalski2009}
+{Kowalski}, A.~F., {Hawley}, S.~L., {Hilton}, E.~J., {et~al.} 2009, \aj, 138,
+  633, \dodoi{10.1088/0004-6256/138/2/633}
+
+\bibitem[{{Kowalski} {et~al.}(2012){Kowalski}, {Hawley}, {Holtzman},
+  {Wisniewski}, \& {Hilton}}]{kowalski2012}
+{Kowalski}, A.~F., {Hawley}, S.~L., {Holtzman}, J.~A., {Wisniewski}, J.~P., \&
+  {Hilton}, E.~J. 2012, \solphys, 277, 21, \dodoi{10.1007/s11207-011-9839-x}
+
+\bibitem[{{Kowalski} {et~al.}(2013){Kowalski}, {Hawley}, {Wisniewski}, {Osten},
+  {Hilton}, {Holtzman}, {Schmidt}, \& {Davenport}}]{kowalski2013}
+{Kowalski}, A.~F., {Hawley}, S.~L., {Wisniewski}, J.~P., {et~al.} 2013, \apjs,
+  207, 15, \dodoi{10.1088/0067-0049/207/1/15}
+
+\bibitem[{{Kunkel}(1975)}]{kunkel1975}
+{Kunkel}, W.~E. 1975, in IAU Symposium, Vol.~67, Variable Stars and Stellar
+  Evolution, ed. V.~E. {Sherwood} \& L.~{Plaut}, 15--46
+
+\bibitem[{{Lacy} {et~al.}(1976){Lacy}, {Moffett}, \& {Evans}}]{lme1976}
+{Lacy}, C.~H., {Moffett}, T.~J., \& {Evans}, D.~S. 1976, \apjs, 30, 85,
+  \dodoi{10.1086/190358}
+
+\bibitem[{{Luger} {et~al.}(2015){Luger}, {Barnes}, {Lopez}, {Fortney},
+  {Jackson}, \& {Meadows}}]{luger2015}
+{Luger}, R., {Barnes}, R., {Lopez}, E., {et~al.} 2015, Astrobiology, 15, 57,
+  \dodoi{10.1089/ast.2014.1215}
+
+\bibitem[{{Lurie} {et~al.}(2015){Lurie}, {Davenport}, {Hawley}, {Wilkinson},
+  {Wisniewski}, {Kowalski}, \& {Hebb}}]{lurie2015}
+{Lurie}, J.~C., {Davenport}, J.~R.~A., {Hawley}, S.~L., {et~al.} 2015, \apj,
+  800, 95, \dodoi{10.1088/0004-637X/800/2/95}
+
+\bibitem[{{Lurie} {et~al.}(2017){Lurie}, {Vyhmeister}, {Hawley}, {Adilia},
+  {Chen}, {Davenport}, {Juri{\'c}}, {Puig-Holzman}, \&
+  {Weisenburger}}]{lurie2017}
+{Lurie}, J.~C., {Vyhmeister}, K., {Hawley}, S.~L., {et~al.} 2017, \aj, 154,
+  250, \dodoi{10.3847/1538-3881/aa974d}
+
+\bibitem[{{Maehara} {et~al.}(2015){Maehara}, {Shibayama}, {Notsu}, {Notsu},
+  {Honda}, {Nogami}, \& {Shibata}}]{maehara2015}
+{Maehara}, H., {Shibayama}, T., {Notsu}, Y., {et~al.} 2015, Earth, Planets, and
+  Space, 67, 59, \dodoi{10.1186/s40623-015-0217-z}
+
+\bibitem[{{Mamajek} \& {Hillenbrand}(2008)}]{mamajek2008}
+{Mamajek}, E.~E., \& {Hillenbrand}, L.~A. 2008, \apj, 687, 1264,
+  \dodoi{10.1086/591785}
+
+\bibitem[{{McQuillan} {et~al.}(2014){McQuillan}, {Mazeh}, \&
+  {Aigrain}}]{mcquillan2014}
+{McQuillan}, A., {Mazeh}, T., \& {Aigrain}, S. 2014, \apjs, 211, 24,
+  \dodoi{10.1088/0067-0049/211/2/24}
+
+\bibitem[{{Meibom} {et~al.}(2011){Meibom}, {Mathieu}, {Stassun}, {Liebesny}, \&
+  {Saar}}]{mms+11}
+{Meibom}, S., {Mathieu}, R.~D., {Stassun}, K.~G., {Liebesny}, P., \& {Saar},
+  S.~H. 2011, \apj, 733, 115, \dodoi{10.1088/0004-637X/733/2/115}
+
+\bibitem[{{Najita} {et~al.}(2016){Najita}, {Willman}, {Finkbeiner}, {Foley},
+  {Hawley}, {Newman}, {Rudnick}, {Simon}, {Trilling}, {Street}, {Bolton},
+  {Angus}, {Bell}, {Buzasi}, {Ciardi}, {Davenport}, {Dawson}, {Dickinson},
+  {Drlica-Wagner}, {Elias}, {Erb}, {Feaga}, {Fong}, {Gawiser}, {Giampapa},
+  {Guhathakurta}, {Hoffman}, {Hsieh}, {Jennings}, {Johnston}, {Kashyap}, {Li},
+  {Linder}, {Mandelbaum}, {Marshall}, {Matheson}, {Meibom}, {Miller},
+  {O'Meara}, {Reddy}, {Ridgway}, {Rockosi}, {Sand}, {Schafer}, {Schmidt},
+  {Sesar}, {Sheppard}, {Thomas}, {Tollerud}, {Trump}, \& {von der
+  Linden}}]{najita2016}
+{Najita}, J., {Willman}, B., {Finkbeiner}, D.~P., {et~al.} 2016, ArXiv
+  e-prints.
+\newblock \doarXiv{1610.01661}
+
+\bibitem[{{N{\'u}{\~n}ez} {et~al.}(2017){N{\'u}{\~n}ez}, {Ag{\"u}eros},
+  {Covey}, \& {L{\'o}pez-Morales}}]{nunez2017}
+{N{\'u}{\~n}ez}, A., {Ag{\"u}eros}, M.~A., {Covey}, K.~R., \&
+  {L{\'o}pez-Morales}, M. 2017, \apj, 834, 176,
+  \dodoi{10.3847/1538-4357/834/2/176}
+
+\bibitem[{{Pallavicini} {et~al.}(1981){Pallavicini}, {Golub}, {Rosner},
+  {Vaiana}, {Ayres}, \& {Linsky}}]{pallavicini1981}
+{Pallavicini}, R., {Golub}, L., {Rosner}, R., {et~al.} 1981, \apj, 248, 279,
+  \dodoi{10.1086/159152}
+
+\bibitem[{{Ramsay} {et~al.}(2013){Ramsay}, {Doyle}, {Hakala}, {Garcia-Alvarez},
+  {Brooks}, {Barclay}, \& {Still}}]{ramsay2013}
+{Ramsay}, G., {Doyle}, J.~G., {Hakala}, P., {et~al.} 2013, \mnras, 434, 2451,
+  \dodoi{10.1093/mnras/stt1182}
+
+\bibitem[{{Segura} {et~al.}(2010){Segura}, {Walkowicz}, {Meadows}, {Kasting},
+  \& {Hawley}}]{segura2010}
+{Segura}, A., {Walkowicz}, L.~M., {Meadows}, V., {Kasting}, J., \& {Hawley}, S.
+  2010, Astrobiology, 10, 751, \dodoi{10.1089/ast.2009.0376}
+
+\bibitem[{{Shibayama} {et~al.}(2013){Shibayama}, {Maehara}, {Notsu}, {Notsu},
+  {Nagao}, {Honda}, {Ishii}, {Nogami}, \& {Shibata}}]{shibayama2013}
+{Shibayama}, T., {Maehara}, H., {Notsu}, S., {et~al.} 2013, \apjs, 209, 5,
+  \dodoi{10.1088/0067-0049/209/1/5}
+
+\bibitem[{{Shkolnik} \& {Barman}(2014)}]{shkolnik2014}
+{Shkolnik}, E.~L., \& {Barman}, T.~S. 2014, \aj, 148, 64,
+  \dodoi{10.1088/0004-6256/148/4/64}
+
+\bibitem[{{Skumanich}(1972)}]{skumanich1972}
+{Skumanich}, A. 1972, \apj, 171, 565, \dodoi{10.1086/151310}
+
+\bibitem[{{Skumanich}(1986)}]{skumanich1986}
+---. 1986, \apj, 309, 858, \dodoi{10.1086/164654}
+
+\bibitem[{{Tilley} {et~al.}(2017){Tilley}, {Segura}, {Meadows}, {Hawley}, \&
+  {Davenport}}]{tilley2017}
+{Tilley}, M.~A., {Segura}, A., {Meadows}, V.~S., {Hawley}, S., \& {Davenport},
+  J. 2017, ArXiv e-prints.
+\newblock \doarXiv{1711.08484}
+
+\bibitem[{{Van Doorsselaere} {et~al.}(2017){Van Doorsselaere}, {Shariati}, \&
+  {Debosscher}}]{van-doorsselaere2017}
+{Van Doorsselaere}, T., {Shariati}, H., \& {Debosscher}, J. 2017, \apjs, 232,
+  26, \dodoi{10.3847/1538-4365/aa8f9a}
+
+\bibitem[{{van Saders} {et~al.}(2016){van Saders}, {Ceillier}, {Metcalfe},
+  {Silva Aguirre}, {Pinsonneault}, {Garc{\'{\i}}a}, {Mathur}, \&
+  {Davies}}]{van-saders2016}
+{van Saders}, J.~L., {Ceillier}, T., {Metcalfe}, T.~S., {et~al.} 2016, \nat,
+  529, 181, \dodoi{10.1038/nature16168}
+
+\bibitem[{{van Saders} {et~al.}(2018){van Saders}, {Pinsonneault}, \&
+  {Barbieri}}]{van-saders2018}
+{van Saders}, J.~L., {Pinsonneault}, M.~H., \& {Barbieri}, M. 2018, ArXiv
+  e-prints.
+\newblock \doarXiv{1803.04971}
+
+\bibitem[{{Veronig} {et~al.}(2002){Veronig}, {Temmer}, {Hanslmeier}, {Otruba},
+  \& {Messerotti}}]{veronig2002}
+{Veronig}, A., {Temmer}, M., {Hanslmeier}, A., {Otruba}, W., \& {Messerotti},
+  M. 2002, \aap, 382, 1070, \dodoi{10.1051/0004-6361:20011694}
+
+\bibitem[{{Vidotto} {et~al.}(2014){Vidotto}, {Gregory}, {Jardine}, {Donati},
+  {Petit}, {Morin}, {Folsom}, {Bouvier}, {Cameron}, {Hussain}, {Marsden},
+  {Waite}, {Fares}, {Jeffers}, \& {do Nascimento}}]{vidotto2014}
+{Vidotto}, A.~A., {Gregory}, S.~G., {Jardine}, M., {et~al.} 2014, \mnras, 441,
+  2361, \dodoi{10.1093/mnras/stu728}
+
+\bibitem[{{Walkowicz} {et~al.}(2004){Walkowicz}, {Hawley}, \&
+  {West}}]{walkowicz2004}
+{Walkowicz}, L.~M., {Hawley}, S.~L., \& {West}, A.~A. 2004, \pasp, 116, 1105,
+  \dodoi{10.1086/426792}
+
+\bibitem[{{Walkowicz} {et~al.}(2011){Walkowicz}, {Basri}, {Batalha},
+  {Gilliland}, {Jenkins}, {Borucki}, {Koch}, {Caldwell}, {Dupree}, {Latham},
+  {Meibom}, {Howell}, {Brown}, \& {Bryson}}]{walkowicz2011}
+{Walkowicz}, L.~M., {Basri}, G., {Batalha}, N., {et~al.} 2011, \aj, 141, 50,
+  \dodoi{10.1088/0004-6256/141/2/50}
+
+\bibitem[{{West} {et~al.}(2008){West}, {Hawley}, {Bochanski}, {Covey}, {Reid},
+  {Dhital}, {Hilton}, \& {Masuda}}]{west2008}
+{West}, A.~A., {Hawley}, S.~L., {Bochanski}, J.~J., {et~al.} 2008, \aj, 135,
+  785, \dodoi{10.1088/0004-6256/135/3/785}
+
+\bibitem[{{West} {et~al.}(2015){West}, {Weisenburger}, {Irwin},
+  {Berta-Thompson}, {Charbonneau}, {Dittmann}, \& {Pineda}}]{west2015}
+{West}, A.~A., {Weisenburger}, K.~L., {Irwin}, J., {et~al.} 2015, \apj, 812, 3,
+  \dodoi{10.1088/0004-637X/812/1/3}
+
+\bibitem[{{Wright} {et~al.}(2011){Wright}, {Drake}, {Mamajek}, \&
+  {Henry}}]{wright2011}
+{Wright}, N.~J., {Drake}, J.~J., {Mamajek}, E.~E., \& {Henry}, G.~W. 2011,
+  \apj, 743, 48, \dodoi{10.1088/0004-637X/743/1/48}
+
+\bibitem[{{Yang} {et~al.}(2017){Yang}, {Liu}, {Gao}, {Fang}, {Guo}, {Zhang},
+  {Hou}, {Wang}, \& {Cao}}]{yang2017}
+{Yang}, H., {Liu}, J., {Gao}, Q., {et~al.} 2017, \apj, 849, 36,
+  \dodoi{10.3847/1538-4357/aa8ea2}
+
+\end{thebibliography}
 
 
 \end{document}
